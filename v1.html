@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>MadaraVet - модерен ветеринарен кабинет в центъра на София</title>
+     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> 
+    <style >
+     
+      @import url('https://fonts.googleapis.com/css2?family=Advent+Pro:ital,wght@0,100..900;1,100..900, Mulish:ital,wght@0,200..1000;1,200..1000&display=swap');
+      section{
+  display:flex;
+  min-height:100vh;
+  position:relative;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+body{
+    background:#DCE6ED;
+}
+body,div,p, h1,h2,h3,h4,h5{
+  font-family:"Mulish", sans-serif;
+}
+h1,h2,h3,h4,h5, .advent{
+  font-family:"Advent Pro";
+}
+
+.banner li{
+  font-size:14px;
+  color:rgba(255,255,255,0.6);
+  margin:0;
+}
+h1.title{
+  min-height:200px;
+  line-height:1.1;
+}
+  /*anim*/
+
+  
+
+
+
+
+.title h1 span, .title span {
+  width: 100%;
+  float: left;
+  color: #ffffff;
+  -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
+  transform: translateY(-50px);
+  opacity: 0;
+  animation-name: titleAnimation;
+  animation-timing-function: ease;
+  animation-duration: 6s;
+  animation-iteration-count:infinite;
+}
+
+.title span {
+ 
+  -webkit-animation-fill-mode: forwards;
+  position:absolute;
+}
+
+.title span:last-child {
+
+  animation-delay: 3s;
+}
+.banner{
+
+  width:100%;
+  background:#121E47 url("images/bgmms.png") 100% 0 no-repeat;
+  min-height:800px;
+  max-height:90vh;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  justify-content:center;
+border-radius:32px;
+}
+.banner h1.title{
+  font-size:3.2em;
+  margin:0;
+  padding:0;
+}
+.titlecontainer{
+  width: 80%;
+  max-width: 400px;
+  
+  min-height: 300px;
+  position: relative;
+  padding:20px;
+  display:flex;
+gap:12px;
+  flex-wrap:wrap;
+
+  flex-direction:column;
+
+}
+.cardcontainer{
+  width:50%;
+  max-height:480px;
+  flex:1 0 auto;
+height:100%;
+  justify-content:center;
+  position:relative;
+  display:flex;
+  align-items:center;
+}
+.card {
+  width: 85vmin;
+  max-width:500px;
+  max-height:300px;
+  position:relative;
+  height: 65vmin;
+
+  background-size: cover;
+
+
+ -webkit-background-clip: padding-box;
+-moz-background-clip:    padding; 
+background-clip:         padding-box;
+  border-radius:24px;
+
+
+   opacity:0.4;
+   position:absolute;
+   background-size:cover;
+}
+
+.card5 img{
+  width:85vmin;
+  max-width:500px;
+  max-height:300px;
+  height:60vmin;
+}
+.card4{
+  background: url("images/layer-roads.png") 0 0 no-repeat;
+  background-size:contain;
+  
+}
+
+.card1{background:url("images/1web.jpg") 0 0 no-repeat;
+transform:
+   perspective(800px)
+  rotateX(50deg)
+  rotateY(-5deg)
+  rotateZ(-30deg)
+   translateZ(60px)
+    translateX(-20px)
+   translateY(40px);
+    
+}
+.card2{background:url("images/2web.jpg") 0 0 no-repeat;
+transform:
+  perspective(800px)
+  rotateX(50deg)
+  rotateY(-5deg)
+  rotateZ(-30deg)
+   translateZ(60px)
+    translateX(-40px)
+   translateY(80px);
+}
+.card3{opacity:1;
+  background:url("images/3web.jpg") 0 0 no-repeat;
+   transform-style: preserve-3d;
+  
+transform:
+  perspective(800px)
+  rotateX(50deg)
+  rotateY(-5deg)
+  rotateZ(-30deg)
+  translateZ(90px)
+     translateY(10px);
+  /* transform: rotateX(60deg) rotateY(-15deg) translateZ(-30px) translateY(20px);*/
+}
+
+.card4{opacity:1;
+ 
+   transform-style: preserve-3d;
+  z-index:9992;
+transform:
+ 
+ 
+  translateZ(-60px)
+     translateY(-90px);
+  /* transform: rotateX(60deg) rotateY(-15deg) translateZ(-30px) translateY(20px);*/
+}
+.card5{opacity:1;
+  
+  
+   transform-style: preserve-3d;
+  z-index:9993;
+transform:
+  
+
+  translateZ(220px)
+    translateX(24px)
+     translateY(-190px);
+     
+  /* transform: rotateX(60deg) rotateY(-15deg) translateZ(-30px) translateY(20px);*/
+}
+@keyframes titleAnimation {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+    -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 80%);
+  }
+  10% {
+    transform: translateY(0);
+    opacity: 1;
+    -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0%);
+  }
+  50% {
+    transform: translateY(0);
+    opacity: 1;
+    -webkit-clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0%);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0%);
+  }
+   62% {
+    transform: translateY(50px);
+    opacity: 0;
+    -webkit-clip-path: polygon(100% 0, 100% 0%, 0 100%, 0 100%);
+    clip-path: polygon(100% 0, 100% 0%, 0 100%, 0 100%);
+  }
+  100% {
+    transform: translateY(50px);
+    opacity: 0;
+    -webkit-clip-path: polygon(100% 0, 100% 0%, 0 100%, 0 100%);
+    clip-path: polygon(100% 0, 100% 0%, 0 100%, 0 100%);
+  }
+}
+
+.banner h4{
+  text-transform:uppercase;
+    background: -webkit-linear-gradient(#F01946, #FF9D2D);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size:24px;
+  margin:0;
+}
+.banner .circle{
+  position:fixed;
+ right:50px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  top:50px;
+  width:132px;
+  height:132px;
+  z-index:9999991;
+  transform-origin:50% 50%;
+}
+ .banner .circle a{
+    transform-origin:50% 50%;
+   display:flex;
+  align-items:center;
+  justify-content:center;
+    width:132px;
+  height:132px;
+  background:rgba(0,0,0,0.14);
+  border-radius:999px;
+ }
+
+ .banner .circle img{
+    transform-origin:50% 50%;
+ }
+.banner .banner-wrap{
+  
+    display: flex;
+    gap: 24px;
+    flex: 1;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top:128px;
+    max-width: 1200px;
+    width: 90%;
+    height: 100vh;
+    flex-wrap:wrap;
+}
+
+.gm-icon, .gm-shape{
+  position:absolute;
+  align-self:center;
+}
+      </style>
+      <style>
+  html {
+    scroll-behavior: smooth;
+  }
+
+.banner ul{
+  list-style:none;
+  margin:12px 0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+}
+  @media (orientation:portrait){
+    .titlecontainer{
+      gap:0;
+    }
+.banner .circle{
+  bottom:20px;
+  left:0px;
+  right:unset;
+  top:unset;
+   transform:scale(0.7);
+}
+.titlecontainer{
+  margin-top:88px;
+}
+.banner{
+  background-position:0 0;
+align-items:flex-start;
+}
+.banner h4{
+  font-size:1em;
+
+}
+.banner h1.title{
+  font-size:2em;
+ 
+  min-height:190px;
+  margin:0;
+  padding:0;
+}
+.banner .banner-wrap{
+margin-top:0;
+  align-items:flex-start;
+}
+.banner-wrap, .titlecontainer{
+  gap:12px;
+}
+.card5{opacity:1;
+  
+  
+   transform-style: preserve-3d;
+  z-index:9993;
+transform:
+  
+
+  translateZ(220px)
+    translateX(-14px)
+     translateY(-200px);
+     
+  /* transform: rotateX(60deg) rotateY(-15deg) translateZ(-30px) translateY(20px);*/
+}
+.banner .circle a{
+    transform-origin:50% 50%;
+   display:flex;
+  align-items:center;
+  justify-content:center;
+    width:132px;
+  height:132px;
+  background:rgba(255,255,255,0.64);
+  border-radius:999px;
+ }
+  }
+  </style>
+  </head>
+<body>
+
+  <section class="banner" id="banner">
+    <div class="banner-wrap">
+<div class="titlecontainer">
+  <div class="circle"><a href="#banner"><div class="gm-shape"><img src="images/circle.svg"></div><div class="gm-icon"><img src="images/googlemaps.svg"></div></a></div>
+  <h4>SPECIAL LIMITED-TIME OFFER</h4>
+  <h1 class="title">
+    <span>Try our Map Modification Service for Free  <ul class="text-white"><li>*New divisions only</li><li>**max. 1 community per customer</li>
+  </ul></span>
+  <span>Try our  Package Community Standard for just $750  <ul class="text-white"><li>*New divisions only</li><li>**max. 1 community per customer</li>
+  </ul></span>
+  
+  </h1>
+
+ 
+</div>
+<div class="cardcontainer">
+  <div class="card5"><img src="images/layer-numbers.svg"></div>
+<div class="card card4"></div>
+<div class="card card1"></div>
+<div class="card card2"></div>
+<div class="card card3"></div>
+
+</div></div>
+  </section>
+  <section class="top-section">
+
+
+    
+
+  </section>
+
+
+
+
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+
+<script src="https://unpkg.com/@lottiefiles/lottie-player@1.3.1/dist/lottie-player.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+ 
+   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
+   
+    
+
+    
+
+    
+  
+
+
+
+<script>
+  
+  
+  
+      gsap.registerPlugin(ScrollTrigger, SplitText);
+
+const picture = document.querySelector(".card");
+
+ gsap.to(".gm-shape", {rotation: 1440, duration: 360});
+    gsap.to(".gm-shape", {
+        scrollTrigger: {
+            trigger: ".banner",
+            scrub: 1,
+            start: 'top center',
+            end: '+=5000',
+        },
+        rotation: 1440,
+        duration: 3,
+        ease: "none",
+    });
+const scrollTimeline = gsap.timeline({
+  scrollTrigger: {
+    // make ScrollTrigger part of the timeline
+    trigger: ".banner",
+    pin: false, // Pin everthing
+    scrub: true, // Use true to remove the lag that makes things feel janky
+    /*markers: true,*/
+    // animation: scrollAnimation, // Add the whole timeline to the controll of the ScrollTrigger
+    // animation: scrollTimeline, // No need if you make ScrollTrigger part of the timeline
+    start: "top",
+    end: `top+=${window.innerHeight} top` // add window height as a scroll distance
+  }
+});
+scrollTimeline
+  
+      .to(
+    ".card5",
+    {
+      // yPercent: 100 // When using yPercent, you can just use numbers instead of strings
+      y: -260, // move elemnt .from() the current window height
+      opacity:0.4,
+      ease: "power.out"
+    }) 
+     .to(
+    ".card4",
+    {
+      // yPercent: 100 // When using yPercent, you can just use numbers instead of strings
+      y: -140, // move elemnt .from() the current window height
+      opacity:0.4,
+      ease: "power.in"
+    }) 
+ 
+
+  .to(".card3", {
+    y: -120,
+    perspective:800,
+   rotateX: 20,
+         rotateY: 10,
+          rotateZ: -30,
+    ease: "power.in",
+    duration: 1 // Make both tween the same duration
+  })
+  .to(
+    ".card1",
+    {
+      // yPercent: 100 // When using yPercent, you can just use numbers instead of strings
+      y: -100, // move elemnt .from() the current window height
+       rotateX: 20,
+         rotateY: 10,
+          rotateZ: -30,
+      ease: "power.in"
+    })
+    
+     .to(
+    ".card2",
+    {
+      // yPercent: 100 // When using yPercent, you can just use numbers instead of strings
+      y: -80, // move elemnt .from() the current window height
+       rotateX: 20,
+         rotateY: 10,
+          rotateZ: -30,
+      ease: "power.in"
+    })
+    .to(".banner h1", {
+        y: -40,
+        opacity: 0.4,
+      }, "-=3")
+ .to(".banner h4", {
+        y: -50,
+        opacity: 0.4,
+      }, "-=3")
+   .to(".banner ul", {
+        y: -20,
+        opacity: 0.4,
+      }, "-=3");    
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+
+function setupSplits() {
+  const targets = gsap.utils.toArray(".split");
+  targets.forEach((target) => {
+    let splitHeading = new SplitText(target, { type: "words, chars" });
+    let chars = splitHeading.chars; //an array of all the divs that wrap each character
+    gsap.from(chars, {
+      yPercent: 130,
+      stagger: 0.05,
+      ease: "back.out",
+      duration: 1,
+      scrollTrigger: {
+        trigger: target,
+        //markers: true,
+        start: "top 75%",
+        end: "bottom center",
+				toggleActions: "play play play reset"
+        //scrub: true
+      }
+    });
+  });
+}
+setupSplits();
+          </script>
+</body>
+</html>
