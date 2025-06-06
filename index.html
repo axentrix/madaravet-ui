@@ -6,14 +6,10 @@
   <title>MadaraVet - Sections 1–7 + DrawSVG</title>
   <link href="https://fonts.googleapis.com/css2?family=Advent+Pro:wght@400;600;700&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com"></script>
-
+  <link rel="stylesheet" href="custom.css" />
   <style>
     body { font-family: 'Advent Pro', sans-serif; }
-    svg path  {
-    stroke: #EE3A43; 
-    stroke-width: 2;
-fill:none;
-} 
+  
 
 
 #section2 {
@@ -35,7 +31,7 @@ section#scrollRibbon >div{
 <body class="bg-[#F6FEFF] text-blue-900 overflow-x-hidden relative">
 
   <!-- Section 1: Top bar -->
-  <header class="max-w-screen-xl mx-auto mt-4 px-4 md:px-8 z-10 relative">
+  <header class="fixed max-w-screen-xl mx-auto mt-4 px-4 md:px-8 z-[8888] ">
     <div class="bg-white rounded-[18px] shadow-md py-3 px-6 flex justify-between items-center">
       <img src="images/logo.svg" alt="MadaraVet logo" class="h-10 md:h-12" />
       <div class="additional-info hidden md:flex  items-center gap-4 text-lg md:text-lg font-semibold">
@@ -44,41 +40,49 @@ section#scrollRibbon >div{
         <span class="text-[#177DDF]">024428585</span>
         <span class="text-[#EE3A43]">ENGLISH</span></div>
      <!-- MENU TOGGLE BUTTON -->
-<button id="menuBtn" class="top-4 right-4 z-50 bg-[#167DFF] text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-lg">
-  ☰
-</button>
+
 
 <!-- Animated Circular Menu -->
+
+
 <div id="menuCircle"
-     class="fixed top-4 right-4 w-[600px] h-[600px] bg-[#167DFF] text-white rounded-full z-40 scale-0 origin-top-right shadow-xl flex flex-col items-center justify-center space-y-4 text-xl font-bold">
-  <img src="images/logo_white.svg" alt="Logo" class="w-40 mb-4" />
+     class="relative  top-4 right-4 w-[60px] h-[60px] rounded-full text-white bg-[#167DFF]    origin-top-right  flex flex-col items-center justify-center space-y-4 text-xl font-bold top-4 right-4 text-white  flex  justify-start text-2xl ">
+
+ <div class="circle absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex rounded-full bg-[#167DFF] w-[60px] h-[60px] z-2"></div>
+   <div class="bars absolute flex flex-col justify-between w-8 h-6 z-60 top-0 left-1/2 -translate-x-1/2 mt-2">    
+  <div class="line h-[2px] bg-white rounded"></div>
+  <div class="line h-[2px] bg-white rounded"></div>
+ 
+</div>
+     <img src="images/logo_white.svg" alt="Logo" class="relative w-40 mb-4 opacity-0" />
+  <ul class="opacity-0 relative transition-opacity duration-500 ease-in-out flex flex-col items-center space-y-4">	
   <a href="#about">ЗА НАС</a>
   <a href="#pricing">ЦЕНОРАЗПИС</a>
   <a href="#services">УСЛУГИ</a>
   <a href="#gallery">ГАЛЕРИЯ</a>
   <a href="#blog">БЛОГ</a>
   <a href="#contact">КОНТАКТИ</a>
+  </ul>
 </div>
-
-
       </div>
     </div>
+    
   </header>
 
   <!-- Section 2: Hero layout -->
-   <seciton  id="section1" class="relative w-full min-h-screen flex align-items-center justify-center flex-col ">
+   <seciton id="section1" class="relative w-full min-h-screen flex align-items-center justify-center flex-col ">
   <div class="max-w-screen-xl mx-auto px-6 pt-10 relative pb-32 items-center justify-center text-center">
    
     <div class="relative z-20 flex align-items-center justify-center flex-col">
       <h1 class="text-[#E3362D] text-6xl md:text-8xl font-bold leading-tight text-center mb-8">
         ВЕТЕРИНАРЕН КАБИНЕТ В<br>САМИЯ ЦЕНТЪР НА<br>СОФИЯ
       </h1>
-      <div class="flex gap-4 mb-10">
-        <div class="flex items-center gap-2 bg-[#177DDF] text-white px-4 py-2 rounded-full text-lg">
+      <div class="flex gap-4 mb-10 justify-center">
+        <div class="flex infobox1 items-center gap-2 bg-[#177DDF] text-white px-4 py-2 rounded-full text-lg">
           <img src="images/pin.svg" class="w-4 h-4" alt="pin" />
           <span>УЛ. ТУНДЖА 22 1606 СОФИЯ</span>
         </div>
-        <div class="flex items-center gap-2 bg-[#177DDF] text-white px-4 py-2 rounded-full text-lg">
+        <div class="flex infobox2 items-center gap-2 bg-[#177DDF] text-white px-4 py-2 rounded-full text-lg">
           <img src="images/phone.svg" class="w-4 h-4" alt="phone" />
           <span>+888 198 585</span>
         </div>
@@ -95,12 +99,12 @@ section#scrollRibbon >div{
 
 
  <div class="circle-init2 absolute left-[-100px] top-[240px] w-[360px] h-[360px] rounded-full bg-[#FFF5DA] z-0"></div>
-    <img src="images/puppies.png" alt="Left Puppies" class="absolute left-1/5 bottom-[20vh] w-30 z-10" />
+    <img src="images/puppies.png" alt="Left Puppies" class="puppies1 absolute left-1/5 bottom-[5vh] w-[60vh] z-10" />
     <div class="circle-init1 absolute right-[-160px] top-[180px] w-[560px] h-[560px] rounded-full bg-[#D8F1FF] z-0"></div>
-    <img src="images/puppies2.png" alt="Woman and Puppies" class="absolute right-[0] w-66 bottom-[-5vh]  z-10" />
+    <img src="images/puppies2.png" alt="Woman and Puppies" class="absolute puppies2 right-[0] w-[96vh] bottom-[10vh]  z-10" />
 </seciton>
   
-<section id="section2">
+<section id="section2" class="relative w-full min-h-screen flex items-center justify-center px-4 py-20 z-15">
   <div id="scrollRibbon" class="bg-[#FFF0F0] py-4 overflow-hidden relative z-40">
     <div class="relative w-full">
       <div id="scrollTrack" class="whitespace-nowrap text-[#11294B] text-6xl font-light flex gap-6 px-4">
@@ -111,49 +115,12 @@ section#scrollRibbon >div{
         <span>🐶 😺 МОДЕРЕН ВЕТЕРИНАРЕН КАБИНЕТ 🐾</span>
       </div>
     </div></div>
+   
   </section>
   <!-- Section 4: Full viewport blue circle with SVG -->
-  <section class="relative w-screen flex items-center justify-center" id="section3">
+  <section class="relative w-screen flex items-center justify-center z-30" id="section3">
+    <div id="floatingBallsContainer" class="absolute top-0 left-0 w-full h-full pointer-events-none z-[9999]">
 
-    
-    <div class="absolute big-circle w-[90vh] h-[90vh] bg-[#D8F1FF] rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 "></div>
-    <img src="images/catdog.svg" alt="Cat and Dog" class="absolute z-10 w-[60vh] max-w-[80vh] z-1" />
-
-<div class="absolute top-[160px] left-[20px] w-[50vw]" >
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 908 743" style="enable-background:new 0 0 908 743;" xml:space="preserve">
-
-<path class="draw1" d="M732,104.1c0.1-2.1,0.2-4.1,0.2-6"/>
-<path class="draw1" d="M731.1,86.1c-11.8-62.1-115.6-43.5-159.9-46c-22.2-1.2-60.7-0.5-78.1-17C476.4,7.3,411.6,0.5,325.6,8.4
-	c-25.3,2.3-56.8,5-76.3,23.8c-8.4,8.1-12.3,18.2-18.2,28C208.2,97.7,166,97.4,127.3,99.7c-26.2,1.6-55.4-1.4-79.5,11.5
-	c-29,15.6-36.7,50.9-36.2,81.8c1.2,74.7,7.3,149.2,12.1,223.7c1.8,28.5-1.5,62.1,10.9,88.7c11.8,25.1,41.4,37.1,67.2,39.9
-	c46,5,94.6,6.6,140.5-0.3c38.7-5.8,82.3-25,119.3-2.6c42.2,25.5,83.7,50.6,134.8,47.3c50.9-3.3,85.7-43.4,114.5-82.6
-	c19.4-26.3,45-35.2,75.1-21.5c21.5,9.8,45.8,38.3,19,57.5c-32.2,23.1-51.2-20-16.6-18.8c66.3,2.2,150.7,26.2,187.6,87
-	c21.4,35.1,23.5,76.7,16.9,116.5"/>
-<path class="draw1" d="M891.9,733.8c-0.4,2-0.8,3.9-1.2,5.9"/>
-</svg>
-
-
-    </div>
-<div class="absolute bottom-[120px] left-[180px] w-[50vw]" >
- 
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 908 743" style="enable-background:new 0 0 908 743;" xml:space="preserve">
-
-<path class="draw2" d="M175.9,103.2c-0.1-2.1-0.2-4.1-0.2-6"/>
-<path class="draw2" d="M176.8,85.2c11.8-62.1,115.6-43.5,159.9-46c22.2-1.2,60.7-0.5,78.1-17C431.6,6.4,496.4-0.4,582.4,7.6
-	c25.3,2.3,56.8,5,76.3,23.8c8.4,8.1,12.3,18.2,18.2,28c22.9,37.5,65.1,37.2,103.7,39.5c26.2,1.6,55.4-1.4,79.5,11.5
-	c29,15.6,36.7,50.9,36.2,81.8c-1.2,74.7-7.3,149.2-12.1,223.7c-1.8,28.5,1.5,62.1-10.9,88.7c-11.8,25.1-41.4,37.1-67.2,39.9
-	c-46,5-94.6,6.6-140.5-0.3c-38.7-5.8-82.3-25-119.3-2.6c-42.2,25.5-83.7,50.6-134.8,47.3c-50.9-3.3-85.7-43.4-114.5-82.6
-	c-19.4-26.3-45-35.2-75.1-21.5c-21.5,9.8-45.8,38.3-19,57.5c32.2,23.1,51.2-20,16.6-18.8c-66.3,2.2-150.7,26.2-187.6,87
-	C10.5,645.6,8.3,687.2,15,727"/>
-<path class="draw2" d="M16,732.9c0.4,2,0.8,3.9,1.2,5.9"/>
-</svg>
-
-
-
-    </div>
-    <div class="circles flex absolute z-30">
 
    <div class="circle-card z-68 absolute top-1/2 transform -translate-y-1/2 left-1/2  w-[30vh] h-[30vh] flex flex-col items-center justify-center text-center px-4">
         <div class="circle absolute bg-[#FFF5DA] w-full h-full flex rounded-full z-[-1]"></div>
@@ -168,11 +135,81 @@ section#scrollRibbon >div{
         <p class="text-[#E3362D] text-xl font-bold leading-tight">ИНДИВИДУАЛНО<br>НАСОЧЕНА<br>ПРОФИЛАКТИКА</p>
       </div>
  <div class="circle-card z-70 absolute top-1/2 left-1/2 transform -translate-y-1/2 left-1/2  w-[30vh] h-[30vh] rounded-full flex flex-col items-center justify-center text-center px-4 ">
-          <div class="circle absolute bg-[#FFF5DA]  w-full h-full  flex rounded-full z-[-1]"></div>
+          <div class="circle absolute bg-[#D8FAF6]  w-full h-full  flex rounded-full z-[-1]"></div>
         <img src="images/ico3.svg" alt="Icon" class="w-6 mb-2" />
         <p class="text-[#E3362D] text-xl font-bold leading-tight">ХИРУРГИЧНО<br>ЛЕЧЕНИЕ</p>
       </div>
+  
+
+</div>
+     <div class="absolute top-[-50px] left-0 w-[40vw] h-[50vh] " >
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 908 743" style="enable-background:new 0 0 908 743;" xml:space="preserve">
+
+
+<defs>
+ <mask id="theMask1" maskUnits="userSpaceOnUse">
+<path class="masker" stroke="#EE3A43" stroke-width="8" fill="none" stroke-dasharray="10" d="M731.1,86.1c-11.8-62.1-115.6-43.5-159.9-46c-22.2-1.2-60.7-0.5-78.1-17C476.4,7.3,411.6,0.5,325.6,8.4
+	c-25.3,2.3-56.8,5-76.3,23.8c-8.4,8.1-12.3,18.2-18.2,28C208.2,97.7,166,97.4,127.3,99.7c-26.2,1.6-55.4-1.4-79.5,11.5
+	c-29,15.6-36.7,50.9-36.2,81.8c1.2,74.7,7.3,149.2,12.1,223.7c1.8,28.5-1.5,62.1,10.9,88.7c11.8,25.1,41.4,37.1,67.2,39.9
+	c46,5,94.6,6.6,140.5-0.3c38.7-5.8,82.3-25,119.3-2.6c42.2,25.5,83.7,50.6,134.8,47.3c50.9-3.3,85.7-43.4,114.5-82.6
+	c19.4-26.3,45-35.2,75.1-21.5c21.5,9.8,45.8,38.3,19,57.5c-32.2,23.1-51.2-20-16.6-18.8c66.3,2.2,150.7,26.2,187.6,87
+	c21.4,35.1,23.5,76.7,16.9,116.5"/>
+<path class="masker" stroke="#EE3A43" stroke-width="8" fill="none" stroke-dasharray="10" d="M891.9,733.8c-0.4,2-0.8,3.9-1.2,5.9"/>
+    </mask>
+  </defs>
+ <g id="maskReveal1" mask="url(#theMask1)">
+  <path class="draw1 " stroke="#EE3A43" stroke-width="8" fill="none" stroke-dasharray="10" d="M732,104.1c0.1-2.1,0.2-4.1,0.2-6"/>
+<path class="draw1" stroke="#EE3A43" stroke-width="8" fill="none" stroke-dasharray="10" d="M731.1,86.1c-11.8-62.1-115.6-43.5-159.9-46c-22.2-1.2-60.7-0.5-78.1-17C476.4,7.3,411.6,0.5,325.6,8.4
+	c-25.3,2.3-56.8,5-76.3,23.8c-8.4,8.1-12.3,18.2-18.2,28C208.2,97.7,166,97.4,127.3,99.7c-26.2,1.6-55.4-1.4-79.5,11.5
+	c-29,15.6-36.7,50.9-36.2,81.8c1.2,74.7,7.3,149.2,12.1,223.7c1.8,28.5-1.5,62.1,10.9,88.7c11.8,25.1,41.4,37.1,67.2,39.9
+	c46,5,94.6,6.6,140.5-0.3c38.7-5.8,82.3-25,119.3-2.6c42.2,25.5,83.7,50.6,134.8,47.3c50.9-3.3,85.7-43.4,114.5-82.6
+	c19.4-26.3,45-35.2,75.1-21.5c21.5,9.8,45.8,38.3,19,57.5c-32.2,23.1-51.2-20-16.6-18.8c66.3,2.2,150.7,26.2,187.6,87
+	c21.4,35.1,23.5,76.7,16.9,116.5"/>
+<path class="draw1" stroke="#EE3A43" stroke-width="8" fill="none" stroke-dasharray="10" d="M891.9,733.8c-0.4,2-0.8,3.9-1.2,5.9"/></g>
+</svg>
+
+
     </div>
+<div class="absolute top-[20vh] left-1/2 w-[40vw] h-[50vh] top-1/2 z-0" >
+ 
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 28.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 908 743" style="enable-background:new 0 0 908 743;" xml:space="preserve">
+<defs>
+    <mask id="theMask2" maskUnits="userSpaceOnUse">
+<path class="masker1" stroke="#EE3A43" stroke-width="8" fill="none" stroke-dasharray="10" d="M175.9,103.2c-0.1-2.1-0.2-4.1-0.2-6"/>
+<path class="masker1" stroke="#EE3A43" stroke-width="8" fill="none" stroke-dasharray="10" d="M176.8,85.2c11.8-62.1,115.6-43.5,159.9-46c22.2-1.2,60.7-0.5,78.1-17C431.6,6.4,496.4-0.4,582.4,7.6
+	c25.3,2.3,56.8,5,76.3,23.8c8.4,8.1,12.3,18.2,18.2,28c22.9,37.5,65.1,37.2,103.7,39.5c26.2,1.6,55.4-1.4,79.5,11.5
+	c29,15.6,36.7,50.9,36.2,81.8c-1.2,74.7-7.3,149.2-12.1,223.7c-1.8,28.5,1.5,62.1-10.9,88.7c-11.8,25.1-41.4,37.1-67.2,39.9
+	c-46,5-94.6,6.6-140.5-0.3c-38.7-5.8-82.3-25-119.3-2.6c-42.2,25.5-83.7,50.6-134.8,47.3c-50.9-3.3-85.7-43.4-114.5-82.6
+	c-19.4-26.3-45-35.2-75.1-21.5c-21.5,9.8-45.8,38.3-19,57.5c32.2,23.1,51.2-20,16.6-18.8c-66.3,2.2-150.7,26.2-187.6,87
+	C10.5,645.6,8.3,687.2,15,727"/>
+<path class="masker1" stroke="#EE3A43" stroke-width="8" fill="none" stroke-dasharray="10" d="M16,732.9c0.4,2,0.8,3.9,1.2,5.9"/>
+    </mask>
+  </defs>
+   <g id="maskReveal2" mask="url(#theMask2)">
+<path class="draw2" stroke="#EE3A43" stroke-width="8" fill="none" stroke-dasharray="10" d="M175.9,103.2c-0.1-2.1-0.2-4.1-0.2-6"/>
+<path class="draw2" stroke="#EE3A43" stroke-width="8" fill="none" stroke-dasharray="10" d="M176.8,85.2c11.8-62.1,115.6-43.5,159.9-46c22.2-1.2,60.7-0.5,78.1-17C431.6,6.4,496.4-0.4,582.4,7.6
+	c25.3,2.3,56.8,5,76.3,23.8c8.4,8.1,12.3,18.2,18.2,28c22.9,37.5,65.1,37.2,103.7,39.5c26.2,1.6,55.4-1.4,79.5,11.5
+	c29,15.6,36.7,50.9,36.2,81.8c-1.2,74.7-7.3,149.2-12.1,223.7c-1.8,28.5,1.5,62.1-10.9,88.7c-11.8,25.1-41.4,37.1-67.2,39.9
+	c-46,5-94.6,6.6-140.5-0.3c-38.7-5.8-82.3-25-119.3-2.6c-42.2,25.5-83.7,50.6-134.8,47.3c-50.9-3.3-85.7-43.4-114.5-82.6
+	c-19.4-26.3-45-35.2-75.1-21.5c-21.5,9.8-45.8,38.3-19,57.5c32.2,23.1,51.2-20,16.6-18.8c-66.3,2.2-150.7,26.2-187.6,87
+	C10.5,645.6,8.3,687.2,15,727"/>
+<path class="draw2" stroke="#EE3A43" stroke-width="8" fill="none" stroke-dasharray="10" d="M16,732.9c0.4,2,0.8,3.9,1.2,5.9"/></g>
+</svg>
+
+
+
+    </div>
+    
+    <div class="absolute big-circle w-[90vh] h-[90vh] bg-[#D8F1FF] rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-8 "></div>
+    <img src="images/catdog.svg" alt="Cat and Dog" class="absolute dogcat z-10 w-[60vh] max-w-[80vh] z-1" />
+
+
+
+    
 <div class="image-cards relative z-20">
   
 
@@ -202,66 +239,87 @@ section#scrollRibbon >div{
 
 
   <!-- Section 8: Image Reveal with Mask -->
-  <section class="w-full overflow-hidden" id="section4">
-    <div class="w-full">
-      <img id="maskedImage" src="images/landscape.jpg" alt="Full width masked" class="w-full h-auto clip-reveal" />
-    </div>
-  </section>
+
+  
+
+  <section class="relative w-full overflow-hidden z-9 align-items-end " id="section4">
+
+  
+ 
+    <div id="maskedImage" class="w-full overflow-hidden rounded-[40px]">
+  <img  src="images/landscape.jpg" alt="Dr.Juliana Sokolova" class="w-full h-auto" /></div>
+ 
+</section>
 
 
 
 
 
   <!-- Section 9: Working Hours with Center Overlap -->
-  <section class="relative w-full min-h-screen flex items-center justify-center px-4 py-20" id="section5">
+  <section class="relative w-full min-h-screen flex items-center justify-center px-4 py-20 z-[28] -mt-[100px] overflow-visible" id="section5">
     <!-- Background circle -->
-    <div class="absolute w-[90vw] h-[90vw] max-w-[650px] max-h-[650px] bg-[#F5FDFF] rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0"></div>
-
+    <div class="absolute big-circle1 w-[60vw] h-[60vw]  bg-[#E9FDFF] rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0"></div>
+ <div class="absolute big-circle-inner w-[55vw] h-[55vw] bg-[#FFEBEB] rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-99888"></div>
     <!-- Working Hours Text -->
     <div class="relative z-10 max-w-3xl w-full text-left md:text-center">
-      <h2 class="text-3xl md:text-5xl font-bold text-[#177DDF]">МАДАРАВЕТ</h2>
-      <h3 class="text-2xl md:text-3xl font-semibold text-[#11294B] mb-8">РАБОТНО ВРЕМЕ</h3>
-      <div class="grid grid-cols-3 gap-x-4 text-lg md:text-base text-[#11294B] max-w-xl mx-auto">
-        <div class="text-left space-y-2">
-          <p>ПОН</p>
-          <p>ВТОРНИК</p>
-          <p>СРЯДА</p>
-          <p>ЧЕТВ</p>
-          <p>ПЕТЪК</p>
-          <p>СЪБОТА</p>
-          <p>НЕДЕЛЯ</p>
-          <p>ОФИЦИАЛЕН ПРАЗНИК</p>
-        </div>
-        <div class="text-left space-y-2">
-          <p>9:00 - 12:00</p>
-          <p>9:00 - 12:00</p>
-          <p></p>
-          <p>9:00 - 12:00</p>
-          <p>9:00 - 12:00</p>
-          <p>10:00 - 13:00</p>
-          <p></p>
-          <p></p>
-        </div>
-        <div class="text-left space-y-2">
-          <p>15:00 - 19:00</p>
-          <p>15:00 - 19:00</p>
-          <p>15:00 - 19:00</p>
-          <p>15:00 - 19:00</p>
-          <p>15:00 - 19:00</p>
-          <p></p>
-          <p>ПОЧИВЕН ДЕН</p>
-          <p>ПОЧИВЕН ДЕН</p>
-        </div>
-      </div>
+      <h2 class="splittitle1 text-3xl md:text-6xl font-bold text-[#177DDF]">МАДАРАВЕТ</h2>
+      <h3 class="splittitle2 text-2xl md:text-6xl font-semibold text-[#11294B] mb-8">РАБОТНО ВРЕМЕ</h3>
+      <div class="hours grid gap-y-2 text-lg md:text-xl text-[#11294B] max-w-xl mx-auto">
+  <div class="grid grid-cols-3 gap-x-4 text-left border-b border-gray-300 pb-2">
+    <p>ПОН</p>
+    <p>9:00 - 12:00</p>
+    <p>15:00 - 19:00</p>
+  </div>
+  <div class="grid grid-cols-3 gap-x-4 text-left border-b border-gray-300 pb-2">
+    <p>ВТОРНИК</p>
+    <p>9:00 - 12:00</p>
+    <p>15:00 - 19:00</p>
+  </div>
+  <div class="grid grid-cols-3 gap-x-4 text-left border-b border-gray-300 pb-2">
+    <p>СРЯДА</p>
+    <p></p>
+    <p>15:00 - 19:00</p>
+  </div>
+  <div class="grid grid-cols-3 gap-x-4 text-left border-b border-gray-300 pb-2">
+    <p>ЧЕТВ</p>
+    <p>9:00 - 12:00</p>
+    <p>15:00 - 19:00</p>
+  </div>
+  <div class="grid grid-cols-3 gap-x-4 text-left border-b border-gray-300 pb-2">
+    <p>ПЕТЪК</p>
+    <p>9:00 - 12:00</p>
+    <p>15:00 - 19:00</p>
+  </div>
+  <div class="grid grid-cols-3 gap-x-4 text-left border-b border-gray-300 pb-2">
+    <p>СЪБОТА</p>
+    <p>10:00 - 13:00</p>
+    <p></p>
+  </div>
+  <div class="grid grid-cols-3 gap-x-4 text-left border-b border-gray-300 pb-2">
+    <p>НЕДЕЛЯ</p>
+    <p></p>
+    <p>ПОЧИВЕН ДЕН</p>
+  </div>
+  <div class="grid grid-cols-3 gap-x-4 text-left border-b border-gray-300 pb-2">
+    <p>ОФИЦИАЛЕН ПРАЗНИК</p>
+    <p></p>
+    <p>ПОЧИВЕН ДЕН</p>
+  </div>
+</div>
+
     </div>
   </section>
 
 
 
 <!-- Section 10: Google Reviews -->
-<section class="relative w-full overflow-hidden" id="section6">
-  <img id="dogImage" src="images/dogs.jpg" alt="Dogs" class="w-full h-auto opacity-0 transition-opacity duration-1000" />
-  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-white rounded-full shadow-xl flex flex-col items-center justify-center text-center text-lg font-bold z-10">
+<section class="relative w-full overflow-hidden z-3" id="section6">
+
+  
+ 
+    <div id="maskedImage2" class="w-full overflow-hidden rounded-[40px]">
+  <img id="dogImage" src="images/dogs.jpg" alt="Dogs" class="w-full h-auto" /></div>
+  <div class="absolute google top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-white rounded-full flex flex-col items-center justify-center text-center text-lg font-bold z-10">
     <img src="images/google.svg" alt="Google" class="w-20 mb-1" />
     <div class="text-yellow-500 text-xl">★★★★★</div>
     <div class="text-[#11294B] mt-1">199+ REVIEWS</div>
@@ -294,284 +352,13 @@ section#scrollRibbon >div{
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/TextPlugin.min.js"></script>
 
- 
+ <script src="custom.js"></script>
   
 
 
 
-<script>
-    gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, Physics2DPlugin, SplitText);
-const split = new SplitText("h1", { type: "chars" });
-gsap.from(split.chars, { opacity: 0, stagger: 0.05 });
-
-gsap.fromTo(
-  [".circle-init1", ".circle-init2"],
-  { scale: 0, opacity: 0 },
-  {
-    scale: 1.5,
-    opacity: 1,
-    duration: 2,
-    ease: "power3.out",
-    stagger: 0.3
-  }
-);
-
-const tl1 = gsap.timeline({
-    scrollTrigger: {
-      trigger: "#section1",
-      start: "top center",
-      end: "bottom center",
-      scrub: true,
-      markers: true
-    }
-  });
-
- tl1
-     .from("#section1 img", { opacity: 0, y: -100, duration: 1 }, "<")
-     .from("#section1 .fixed", { opacity: 0, scale: 0.5, duration: 1 }, "-=0.5")
-
-.from([".circle-init1", ".circle-init2"], {
-  scale: 2,
-  
-  duration: 2,
-  ease: "power3.out",
-  stagger: 0.3
-}, 1); 
-
-
- 
 
 
 
- const scrollTrack = document.getElementById("scrollTrack");
-
-  // Create the looping animation timeline (paused initially)
-  const scrollTimeline = gsap.timeline({ repeat: -1, paused: true })
-    .to(scrollTrack, {
-      xPercent: -50,
-      ease: "linear",
-      duration: 20
-    });
-
-  // Wrap in a ScrollTrigger-bound timeline
-  const controlTimeline = gsap.timeline({
-  scrollTrigger: {
-    trigger: "#section2",
-    start: "top bottom",
-    end: "bottom top",
-    onEnter: () => scrollTimeline.restart(true),
-    onLeave: () => scrollTimeline.pause(),
-    onEnterBack: () => scrollTimeline.restart(true),
-    onLeaveBack: () => scrollTimeline.pause(),
-    markers: true,
-      toggleActions: "play reverse play reverse" // animate in and out
-      
-  }
-
-
-   
-});
-
-
- controlTimeline.from("#scrollRibbon", {
-    xPercent: 100,     // start off-screen to the right
-    opacity: 0,
-    duration: 1,
-    ease: "power2.out"
-  });
-
-
-  const scaleMax = gsap.utils.mapRange(1, document.querySelectorAll(".image-card").length, 0.6, 1); 
-
-const time = 2; 
-const imageCards = gsap.utils.toArray(".image-card");
-const circleCards = gsap.utils.toArray(".circle-card");
-gsap.set('.image-card', {
-  y: (index) => 30 * index, // set offset
-  transformStyle: "preserve-3d", // For the perspecitve effect
-  transformPerspective: 1000, // For the perspecitve effect
-  transformOrigin: "center top", 
-});
-
-   const tl3 = gsap.timeline({
-    scrollTrigger: {
-      trigger: "#section3",
-      start: "top top",
-       end: `${window.innerHeight * 4} top`,
-      scrub: true,
-      pin: true,
-      pinSpacing:0,
-   
-  onLeave: () => {
-    const section3 = document.querySelector("#section3");
-    const section6 = document.querySelector("#section6");
-    const section3Top = section3.getBoundingClientRect().top + window.scrollY;
-    const section6Top = section6.getBoundingClientRect().top + window.scrollY;
-
-    const fallY = section6Top - section3Top; // distance from #section3 top to #section6 top
-
-    gsap.utils.toArray(".circle-card").forEach((card, i) => {
-      const randomX = gsap.utils.random(-300, 300);
-
-      // Reset any transforms and styles
-      gsap.set(card, {
-        clearProps: "all",
-        position: "absolute",
-        willChange: "transform",
-        zIndex: 999
-      });
-
-      // Animate falling with bounce
-      gsap.to(card, {
-        y: fallY,
-        x: randomX,
-        ease: "bounce.out",
-        duration: 2,
-        delay: i * 0.3,
-        rotation: 360
-      });
-    });
-  },
-      markers: true
-    }
-  });
-
-
-
-// Loop and animate each card + circle pair together
-imageCards.forEach((imgCard, i) => {
-  const circleCard = circleCards[i];
-gsap.set(circleCard, { xPercent: -40, yPercent: -50 });
-  const inTime = i * 2;        // entry timing
-  const outTime = inTime + 1;  // exit starts BEFORE next card enters
-
-  // ENTER image-card
-  tl3.from(imgCard, {
-    y: window.innerHeight,
-    rotationX: -30,
-   
-    duration: 2.5,
-    ease: "power2.out"
-  }, inTime);
-
-  // ENTER circle-card
-  if (circleCard) {
-    tl3.from(circleCard, {
-     xPercent: 20, 
-      x: -500,
-      scale: 0.8,
-      duration: 2.2,
-      ease: "power2.out"
-    }, inTime);
-
-    const innerElements = circleCard.querySelectorAll(".circle, img, p");
-    tl3.from(innerElements, {
-      opacity: 0,
-      y: 30,
-      scale: 0.2,
-      duration: 1.5,
-      ease: "power3.out",
-      stagger: 0.2
-    }, inTime + 0.6);
-  }
-
-  // EXIT image-card overlaps with next entry
-  tl3.to(imgCard, {
-    y: window.innerHeight,
-    scale: 0.8,
-    rotationX: -30,
-    opacity: 0,
-    duration: 2.5,
-    ease: "power2.in"
-  }, outTime);
-});
-
-
-
-
-tl3.from(".big-circle", {
-  scale: 0,
-  
-  ease: "none",
-  duration: imageCards.length * 3 // full duration of timeline
-}, "-1");
-tl3.fromTo(
-  ".draw1",
-  { drawSVG: "0%" },
-  { drawSVG: "100%", ease: "none", duration: 4 }, "=-2"
-);
-
-tl3.fromTo(
-  ".draw2",
-  { drawSVG: "0%" },
-  { drawSVG: "100%", ease: "none", duration: 4 },
-  ">" // start after .draw1 finishes
-);
-
-ScrollTrigger.create({
-  trigger: "#section6",
-  start: "top center",
-  onEnter: () => {
-    gsap.utils.toArray(".circle-card").forEach((card, i) => {
-      gsap.to(card, {
-        y: `+=40`, // bounce drop
-        duration: 0.4,
-        ease: "power2.in"
-      });
-
-      gsap.to(card, {
-        y: `-=${40}`,
-        duration: 0.6,
-        ease: "bounce.out",
-        delay: 0.4
-      });
-    });
-  }
-});
-
-  </script>
-
-
-
-<script>
-  const menuBtn = document.getElementById('menuBtn');
-  const menuCircle = document.getElementById('menuCircle');
-  let menuOpen = false;
-
-  menuBtn.addEventListener('click', () => {
-    if (!menuOpen) {
-      gsap.to(menuCircle, {
-        scale: 1,
-        ease: "elastic.out(1, 0.5)",
-        duration: 1
-      });
-      menuOpen = true;
-    } else {
-      gsap.to(menuCircle, {
-        scale: 0,
-        ease: "power2.inOut",
-        duration: 0.5
-      });
-      menuOpen = false;
-    }
-  });
-
-
-
-
-
-</script>
-  <script>
-    gsap.to("#maskedImage", {
-      clipPath: "inset(0% 0% 0% 0%)",
-      ease: "power2.out",
-      duration: 2,
-      scrollTrigger: {
-        trigger: "#maskedImage",
-        start: "top 80%",
-        toggleActions: "play none none none"
-      }
-    });
-  </script>
 </body>
 </html>
