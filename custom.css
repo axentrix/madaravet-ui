@@ -7,6 +7,12 @@ section {
   align-items: center;
   min-height: 100svh;
 }
+
+#scrollRibbon{
+  height:30vh;
+  display:flex;
+  align-items:center;
+}
 .image-cards {
   padding: 0;
   margin: 0;
@@ -65,7 +71,83 @@ max-height:80vh;
   transform-origin: top right;
 }
 
+#menuCircle ul, 
+#menuCircle img {
+  opacity: 0;
+}
+
+/* Mobile styles for header and menuCircle */
+@media (max-width: 767px) {
+  header .bg-white {
+    justify-content: space-between;
+   
+  }
+  
+  .additional-info {
+    position: relative;
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+  
+  .additional-info span {
+    display: none;
+  }
+  
+  #menuCircle {
+    position: relative;
+    display: flex !important;
+    z-index: 9000;
+    margin-left: auto;
+  }
+}
+
+#menuCircle::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: -1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#menuCircle.open::before {
+  opacity: 1;
+  visibility: visible;
+}
+
 .circle-clone {
   pointer-events: none;
-  opacity: 0.9;
+  opacity: 1;
+  overflow: hidden;
+}
+
+.circle-clone .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.circle-clone ul, 
+.circle-clone img {
+  opacity: 0;
+}
+
+/* Mobile styles for menu clone */
+@media (max-width: 767px) {
+  .circle-clone ul {
+    font-size: 1.2rem;
+    padding: 0;
+  }
+  
+  .circle-clone ul a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem;
+  }
 }
