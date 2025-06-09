@@ -66,23 +66,25 @@ section#scrollRibbon >div{
   </header>
 
   <!-- Section 2: Hero layout -->
-   <seciton id="section1" class="relative w-full min-h-screen flex align-items-center justify-center flex-col ">
-  <div class="max-w-screen-xl mx-auto px-6 pt-32 relative pb-32 items-center justify-center text-center">
+   <seciton id="section1" class="relative w-full min-h-screen flex align-items-center justify-start flex-col ">
+  <div class="max-w-screen-xl mx-auto pt-32 px-6 md:pt-32 relative pb-32 items-center justify-center text-center">
    
     <div class="relative z-20 flex align-items-center justify-center flex-col">
-      <h1 class="text-[#E3362D] text-4xl split-text md:text-8xl font-bold leading-tight text-center mb-8">
-        ВЕТЕРИНАРЕН КАБИНЕТ В<br>САМИЯ ЦЕНТЪР НА<br>СОФИЯ
-      </h1>
-      <div class="flex gap-4 mb-10 justify-center">
-        <div class="flex infobox1 split-text items-center gap-2 bg-[#177DDF] text-white px-4 py-2 rounded-full text-lg">
+    
+    <div class="flex gap-4 mb-10 justify-center flex-col md:flex-row items-start">
+        <div class="flex w-auto infobox1 split-text items-center gap-2 bg-[#177DDF] text-white px-4 py-2 rounded-full text-lg">
           <img src="images/pin.svg" class="w-4 h-4" alt="pin" />
           <span>УЛ. ТУНДЖА 22 1606 СОФИЯ</span>
         </div>
-        <div class="flex infobox2 split-text items-center gap-2 bg-[#177DDF] text-white px-4 py-2 rounded-full text-lg">
+        <div class="flex w-auto infobox2 split-text items-center gap-2 bg-[#177DDF] text-white px-4 py-2 rounded-full text-lg">
           <img src="images/phone.svg" class="w-4 h-4" alt="phone" />
           <span>+888 198 585</span>
         </div>
       </div>
+      <h1 class="text-[#E3362D] text-4xl split-text md:text-8xl font-bold leading-tight text-center mb-8">
+        ВЕТЕРИНАРЕН КАБИНЕТ В<br>САМИЯ ЦЕНТЪР НА<br>СОФИЯ
+      </h1>
+     
     </div>
     <div class="fixed top-[55%] left-6 flex flex-col gap-4 z-80">
       <a href="#"><img src="images/fb.svg" alt="Facebook" class="w-6 h-6" /></a>
@@ -95,9 +97,9 @@ section#scrollRibbon >div{
 
 
  <div class="circle-init2 absolute left-[-100px] top-[240px] w-[360px] h-[360px] rounded-full bg-[#FFF5DA] z-0"></div>
-    <img src="images/puppies.png" alt="Left Puppies" class="puppies1 absolute left-1/5 bottom-[5vh] w-[50vh] z-9" />
+    <img src="images/puppies.png" alt="Left Puppies" class="puppies1 absolute left-[-100px] md:left-1/5 bottom-[5vh] w-[40vh] md:w-[60vh] z-79" />
     <div class="circle-init1 absolute right-[-160px] top-[180px] w-[560px] h-[560px] rounded-full bg-[#D8F1FF] z-0"></div>
-    <img src="images/puppies2.png" alt="Woman and Puppies" class="absolute puppies2 right-[0] w-[96vh] bottom-[10vh]  z-10" />
+    <img src="images/puppies2.png" alt="Woman and Puppies" class="absolute puppies2 max-w-unset right-[0] w-auto h-[60vh] md:w-[96vh] md:h-auto bottom-[10vh]  z-10" />
 </seciton>
   
 <section id="section2" class="relative w-full min-h-screen flex items-center justify-center px-4 py-20 z-15">
@@ -138,7 +140,7 @@ section#scrollRibbon >div{
   
 
 </div>
-     <div class="absolute top-[-50px] left-0 w-[40vw] h-[50vh] " >
+     <div class="absolute top-[-50px] left-0 w-100 h-100 md:w-[40vw] md:h-[50vh] " >
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 908 743" style="enable-background:new 0 0 908 743;" xml:space="preserve">
 
@@ -167,7 +169,65 @@ section#scrollRibbon >div{
 
 
     </div>
-<div class="absolute top-[20vh] left-1/2 w-[40vw] h-[50vh] top-1/2 z-0" >
+
+    
+    <div class="absolute big-circle w-[90vh] h-[90vh] bg-[#D8F1FF] rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-8 "></div>
+    <img src="images/catdog.svg" alt="Cat and Dog" class="absolute dogcat z-10 w-[60vh] max-w-[80vh] z-1" />
+
+
+
+    
+<div class="image-cards relative z-20">
+  
+
+    <!-- Service 1 -->
+    <div class="image-card flex  w-[80vw] h-[80vh] md:w-auto md:h-auto">    
+     <div class="image1 service">  <img src="images/service1.png" alt="Диагностика" class="rounded-xl w-full object-cover" /></div>
+   
+    </div>
+
+    <!-- Service 2 -->
+    <div class="image-card flex  w-[80vw] h-[80vh] md:w-auto md:h-auto">  
+ 
+    <div class="image2 service">  <img src="images/service2.png" alt="Профилактика" class="rounded-xl w-full object-cover" /></div>
+    </div>
+
+    <!-- Service 3 -->
+    <div class="image-card flex  w-[80vw] h-[80vh] md:w-auto md:h-auto">
+     <div class=" image2 service">  <img src="images/service3.png" alt="Хирургия" class="rounded-xl w-full object-cover" /></div>
+     
+    </div>
+</div>
+  </section>
+
+  
+
+
+
+
+  <!-- Section 8: Image Reveal with Mask -->
+
+  
+
+  <section class="relative w-full overflow-hidden z-9 align-items-end " id="section4">
+
+ 
+ 
+    <div id="maskedImage" class="w-full overflow-hidden rounded-[40px]">
+  <img  src="images/landscape.jpg" alt="Dr.Juliana Sokolova" class="w-full h-auto" /></div>
+ 
+</section>
+
+
+
+
+
+  <!-- Section 9: Working Hours with Center Overlap -->
+  <section class="relative w-full min-h-screen flex items-center justify-center px-4 py-20 z-[28] -mt-[100px] overflow-visible" id="section5">
+    <!-- Background circle -->
+
+
+     <div class="absolute top-[20vh] left-1/2 w-100 h-100 md:w-[40vw] md:h-[50vh] top-1/2 z-0" >
  
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 28.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
@@ -199,67 +259,12 @@ section#scrollRibbon >div{
 
 
     </div>
-    
-    <div class="absolute big-circle w-[90vh] h-[90vh] bg-[#D8F1FF] rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-8 "></div>
-    <img src="images/catdog.svg" alt="Cat and Dog" class="absolute dogcat z-10 w-[60vh] max-w-[80vh] z-1" />
-
-
-
-    
-<div class="image-cards relative z-20">
-  
-
-    <!-- Service 1 -->
-    <div class="image-card flex">    
-     <div class="image1 service">  <img src="images/service1.png" alt="Диагностика" class="rounded-xl w-full object-cover" /></div>
-   
-    </div>
-
-    <!-- Service 2 -->
-    <div class="image-card flex">  
- 
-    <div class="image2 service">  <img src="images/service2.png" alt="Профилактика" class="rounded-xl w-full object-cover" /></div>
-    </div>
-
-    <!-- Service 3 -->
-    <div class="image-card flex">
-     <div class=" image2 service">  <img src="images/service3.png" alt="Хирургия" class="rounded-xl w-full object-cover" /></div>
-     
-    </div>
-</div>
-  </section>
-
-  
-
-
-
-
-  <!-- Section 8: Image Reveal with Mask -->
-
-  
-
-  <section class="relative w-full overflow-hidden z-9 align-items-end " id="section4">
-
-  
- 
-    <div id="maskedImage" class="w-full overflow-hidden rounded-[40px]">
-  <img  src="images/landscape.jpg" alt="Dr.Juliana Sokolova" class="w-full h-auto" /></div>
- 
-</section>
-
-
-
-
-
-  <!-- Section 9: Working Hours with Center Overlap -->
-  <section class="relative w-full min-h-screen flex items-center justify-center px-4 py-20 z-[28] -mt-[100px] overflow-visible" id="section5">
-    <!-- Background circle -->
     <div class="absolute big-circle1 w-[60vw] h-[60vw]  bg-[#E9FDFF] rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0"></div>
  <div class="absolute big-circle-inner w-[55vw] h-[55vw] bg-[#FFEBEB] rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-99888"></div>
     <!-- Working Hours Text -->
     <div class="relative z-10 max-w-3xl w-full text-left md:text-center">
-      <h2 class="splittitle1 text-3xl md:text-6xl font-bold text-[#177DDF]">МАДАРАВЕТ</h2>
-      <h3 class="splittitle2 text-2xl md:text-6xl font-semibold text-[#11294B] mb-8">РАБОТНО ВРЕМЕ</h3>
+      <h2 class="splittitle1 text-center text-3xl md:text-6xl font-bold text-[#177DDF]">МАДАРАВЕТ</h2>
+      <h3 class="splittitle2 text-center text-2xl md:text-6xl font-semibold text-[#11294B] mb-8">РАБОТНО ВРЕМЕ</h3>
       <div class="hours grid gap-y-2 text-lg md:text-xl text-[#11294B] max-w-xl mx-auto">
   <div class="grid grid-cols-3 gap-x-4 text-left border-b border-gray-300 pb-2">
     <p>ПОН</p>
@@ -309,7 +314,7 @@ section#scrollRibbon >div{
 
 
 <!-- Section 10: Google Reviews -->
-<section class="relative w-full overflow-hidden z-3" id="section6">
+<section class="relative w-full overflow-hidden flex-col z-3" id="section6">
 
   
  
@@ -320,6 +325,43 @@ section#scrollRibbon >div{
     <div class="text-yellow-500 text-xl">★★★★★</div>
     <div class="text-[#11294B] mt-1">199+ REVIEWS</div>
   </div>
+
+
+<div class="relative reviews">
+
+  <div class="google-review  w-40 h-40 bg-white rounded-full flex flex-col items-center justify-center text-center text-lg font-bold ">
+
+    <div class="text-yellow-500 text-xl">★★★★★</div>
+    <div class="text-[#11294B] mt-1">Dr. Sokolova really helped us</div>
+  </div>
+  <div class="google-review  w-40 h-40 bg-white rounded-full flex flex-col items-center justify-center text-center text-lg font-bold ">
+
+    <div class="text-yellow-500 text-xl">★★★★★</div>
+    <div class="text-[#11294B] mt-1">Exceptional in everything.</div>
+  </div>
+ <div class="google-review  w-40 h-40 bg-white rounded-full flex flex-col items-center justify-center text-center text-lg font-bold ">
+   
+    <div class="text-yellow-500 text-xl">★★★★★</div>
+    <div class="text-[#11294B] mt-1">Actually really nice vet.</div>
+  </div>
+   <div class="google-review  w-40 h-40 bg-white rounded-full flex flex-col items-center justify-center text-center text-lg font-bold ">
+ 
+    <div class="text-yellow-500 text-xl">★★★★★</div>
+    <div class="text-[#11294B] mt-1">It is a fantastic place to bring your friend</div>
+  </div> <div class="google-review  w-40 h-40 bg-white rounded-full flex flex-col items-center justify-center text-center text-lg font-bold ">
+    
+    <div class="text-yellow-500 text-xl">★★★★★</div>
+    <div class="text-[#11294B] mt-1">A great team of dedicated veterinarians.</div>
+  </div>
+</div>
+
+
+<div class="relative facebook">
+
+<h2 class="split-text"><span class="text-[#177DDF] text-3xl">MADARAVET/</span><span class="text-[#E3362D]">FACEBOOK</span></h2>
+
+</div>
+
 </section>
 
 <!-- Section 11: Footer -->
@@ -347,7 +389,7 @@ section#scrollRibbon >div{
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollToPlugin.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/TextPlugin.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/matter-js@0.19.0/build/matter.min.js"></script>
  <script src="custom.js"></script>
   
 

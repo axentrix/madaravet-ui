@@ -129,11 +129,14 @@ gsap.set('.image-card', {
     scrollTrigger: {
       trigger: "#section3",
       start: "top top",
-       end: `${window.innerHeight * 4} top`,
+       end: `bottom+=1000 top`,
       scrub: true,
       pin: true,
       pinSpacing:0,
    toggleActions: "play none restart none",
+    onUpdate: self => {
+    console.log("progress:", self.progress.toFixed(2), "scroll:", self.scroll());
+  },
   onLeave: () => {
   const section3 = document.querySelector("#section3");
   const section5 = document.querySelector("#section4");
@@ -146,7 +149,7 @@ gsap.set('.image-card', {
        const cardHeight = card.offsetHeight;
     const fallY = section6Top - section3Top - cardHeight/2;
 
-    const randomX = gsap.utils.random(-150, 150);
+    const randomX = gsap.utils.random(-250, 250);
     const randomDuration = gsap.utils.random(1.2, 2.5);
 
    gsap.set(card, {
@@ -188,15 +191,142 @@ gsap.set('.image-card', {
 
     }
   });
+tl3.set(imageCards, {
+  autoAlpha: 0,
+  scale: 1,
+  rotationX: -30,
+  transformOrigin: "center center"
+});
+// === STEP 1: image-card 1 appears smoothly
+tl3.to(imageCards[0], {
+  autoAlpha: 1,
+  rotationX: 0,
+  scale: 0.98,
+  duration: 0.4, // ⬅️ slower appearance
+  ease: "power2.out"
+}, 0);
 
-tl3.from(".big-circle", {
-  scale: 0.4,
+// === STEP 2: circle-card 1 enters (unchanged)
+tl3.to(circleCards[0], {
+  autoAlpha: 1,
+  yPercent: -50,
+  scale: 1.2,
+  ease: "power2.out",
+  duration: 0.2
+}, 0.1); // slightly later
+
+// === STEP 3: circle-card 1 drops
+tl3.to(circleCards[0], {
+  y: window.innerHeight,
+  autoAlpha: 0,
+  ease: "power2.in",
+  duration: 0.3 // ⬅️ slightly longer drop
+}, 0.35);
+
+// === STEP 4: image-card 2 enters slightly before image-card 1 exits
+tl3.fromTo(imageCards[1], {
+  autoAlpha: 0,
+  yPercent: 50,
+  rotationX: -30,
+  scale: 1,
   
-  ease: "none",
-  duration: 1 // full duration of timeline
-},0);
+  transformOrigin: "center center"
+}, {
+  autoAlpha: 1,
+  scale: 0.98,
+  yPercent: 0,
+  rotationX: 0,
+  duration: 0.4,
+  ease: "power2.out"
+}, 0.38); // ⬅️ overlaps slightly with previous drop
 
+// === image-card 1 staggers out a bit later
+tl3.to(imageCards[0], {
+  y: window.innerHeight,
+  autoAlpha: 0,
+  ease: "power2.inOut",
+  duration: 0.4
+}, 0.42);
 
+// === STEP 5: circle-card 2 enters
+tl3.to(circleCards[1], {
+  autoAlpha: 1,
+  yPercent: -50,
+  scale: 1.2,
+  ease: "power2.out",
+  duration: 0.2
+}, 0.5);
+
+// === STEP 6: circle-card 2 drops
+tl3.to(circleCards[1], {
+  y: window.innerHeight,
+  autoAlpha: 0,
+  ease: "power2.in",
+  duration: 0.3
+}, 0.7);
+
+// === STEP 7: image-card 3 enters with overlap
+tl3.fromTo(imageCards[2], {
+  autoAlpha: 0,
+  yPercent: 50,
+  rotationX: -30,
+  scale:1,
+  transformOrigin: "center center"
+}, {
+  autoAlpha: 1,
+  yPercent: -15,
+  rotationX: 0,
+  scale: 0.98,
+  duration: 0.4,
+  ease: "power2.out"
+}, 0.68); // slightly before image 2 ends
+
+// === image-card 2 staggers out
+tl3.to(imageCards[1], {
+  y: window.innerHeight,
+  autoAlpha: 0,
+  ease: "power2.inOut",
+  duration: 0.4
+}, 0.73);
+
+// === STEP 8: circle-card 3 enters
+tl3.to(circleCards[2], {
+  autoAlpha: 1,
+  yPercent: -50,
+  scale: 1.2,
+  ease: "power2.out",
+  duration: 0.2
+}, 0.78);
+
+// === STEP 9: circle-card 3 drops
+tl3.to(circleCards[2], {
+  y: window.innerHeight,
+  autoAlpha: 0,
+  ease: "power2.in",
+  duration: 0.3
+}, 0.95);
+
+// === STEP 10: image-card 3 drops and fades
+tl3.to(imageCards[2], {
+  y: window.innerHeight,
+  autoAlpha: 0,
+  ease: "power2.inOut",
+  duration: 0.8
+}, 1.0);
+
+// === Background and dogcat scaling
+tl3.to(".big-circle", {
+  scale: isMobile ? 1.4 : 1.2,
+  
+  ease: "power1.out",
+  duration: 1
+}, 0);
+
+tl3.to(".dogcat", {
+  scale: isMobile ? 1.3 : 1.2,
+  ease: "power1.out",
+  duration: 0.3
+}, 0.7);
 tl3.fromTo(
   "#theMask1 .masker",
   { drawSVG: "0%" },
@@ -206,97 +336,6 @@ tl3.fromTo(
 
 
 
-
-tl3.fromTo(
-  "#theMask2 .masker1",
-  { drawSVG: "0%" },
-  { drawSVG: "100%", ease: "none", duration: 1 }, 0.2
-  // start after .draw1 finishes
-);
-
-
-
-tl3
-.from(imageCards[0], {
-  
-   scale:1.2,
-    duration: 0.8,
-   
-    ease: "power2.out"
-  }, 0.3)
-
-.from(circleCards[0], {
-  x:-100,
-  opacity:0,
-   scale:1.2,
-    duration: 0.8,
-   
-    ease: "power2.out"
-  }, 0.3)
-
-.from(imageCards[1], {
-  y: window.innerHeight,
-   scale:0.4,
-    duration: 0.4,
-  
-    ease: "power2.out"
-  }, 0.5) 
-  
-  .from(circleCards[1], {
-  x:-100,
-   scale:1.2,
-    duration: 0.8,
-     opacity:0,
-    ease: "power2.out"
-  }, 0.5)
-  
-  // start 2 seconds after the first image
-.from(imageCards[2], {
-  y: window.innerHeight,
-   scale:0.4,
-    duration: 0.4,
-
-    ease: "power2.out"
-  }, 0.8)
-.from(circleCards[2], {
-  y: window.innerHeight,
-   scale:0.4,
-    duration: 0.4,
-  opacity:0,
-    ease: "power2.out"
-  }, 0.8);
-
-
-
-
-  
-circleCards.forEach((circleCard, i) => {
-  const offset = gsap.utils.random(-300, 300); // x movement
-  const spin = offset * 2; // correlate spin with distance
-
-  tl3.to(circleCard, {
-    x: `+=${offset}`,
-    rotation: `+=${spin}`,
-    scale: 1.05,
-    duration: 0.4,
-    ease: "power3.out" // ease-out = decelerating = inertia feel
-  }, `>+=${i * 0.1}`);
-});
-
-
-
-
-
-tl3.to(
-  ".dogcat",
-  {
-    scale: 1.4,         // or your desired scale
-    duration: 0.4,      // adjust as needed
-    ease: "power3.out"
-  
-  },
-  ">" // this ensures it starts after all previous animations in tl3
-);
 
 
 const tl4 = gsap.timeline({
@@ -314,9 +353,9 @@ const tl4 = gsap.timeline({
 
 
 tl4.fromTo("#maskedImage", {
-  clipPath: "inset(20% 20% 20% 20% round 20px)",
+  clipPath: "inset(40% 40% 40% 40% round 20px)",
 }, {
-  clipPath: "inset(0% 0% 0% 0% round 0px)",
+  clipPath: "inset(0% 0% 0% 0% round 20px)",
   ease: "power2.out",
   duration: 2
 }, 0);
@@ -363,7 +402,7 @@ const tl5 = gsap.timeline({
     scrollTrigger: {
       trigger: "#section5",
       start: "top top",
-       end: "bottom top",
+       end: "+=200%",
       scrub: true,
       pin: true,
      
@@ -373,6 +412,7 @@ const tl5 = gsap.timeline({
     },
     
   });
+ 
 tl5.add(() => {
   circleCards.forEach(card => {
     gsap.set(card, {
@@ -398,7 +438,12 @@ tl5.from(split1.chars, {
   duration: 2,
   ease: "power2.out"
 }, "<+0.2"); // starts right after previous
-
+  gsap.set(".big-circle1", {
+           scale:0
+        });
+          gsap.set(".big-circle-inner", {
+           scale:0
+        });
 tl5.from(split2.chars, {
   opacity: 0,
   y: 20,
@@ -414,23 +459,41 @@ tl5.from(split2.chars, {
   duration: 1
 });
 
-tl5.from(".big-circle1", {
-  scale: 0,
+tl5.to(".big-circle1", {
+  scale: isMobile ? 3 : 1,
   
   ease: "none",
-  duration: 3
+  duration: 1
 });
-tl5.from(".big-circle-inner", {
-  scale: 0,
+tl5.to(".big-circle-inner", {
+  scale: isMobile ? 2.4 : 1,
   
   ease: "none",
-  duration: 3
-});
+  duration: 0.8
+},">+0.3");
 
 
+ tl5.fromTo(
+  "#theMask2 .masker1",
+  { drawSVG: "0%" },
+  { drawSVG: "100%", ease: "none", duration: 1 }, 0
+  // start after .draw1 finishes
+);
 
-
-
+gsap.fromTo(
+  "#theMask2 .masker1",
+  { drawSVG: "0%" },
+  {
+    drawSVG: "100%",
+    ease: "none",
+    scrollTrigger: {
+      trigger: "#section5",
+      start: "top top",
+      end: "+=200%",
+      scrub: true
+    }
+  }
+);
 
 circleCards.forEach((card, i) => {
   const randomX = gsap.utils.random(-200, 200);
@@ -445,26 +508,27 @@ circleCards.forEach((card, i) => {
   }, "<+0.3"); // slightly after titles
 });
 
-const tl6 = gsap.timeline({
+ const tl6 = gsap.timeline({
     scrollTrigger: {
       trigger: "#section6",
       start: "top top",
-       end: "bottom top",
+      end: "bottom top",
       scrub: true,
       pin: false,
-  
-       toggleActions: "play none restart none"
     }
-  
   });
 
 
+const maskedImage2 = document.querySelector("#maskedImage2");
+
+
+
 tl6.fromTo("#maskedImage2", {
-  clipPath: "inset(20% 20% 20% 20% round 80px)",
+  clipPath: "inset(60% 60% 60% 60% round 40px)",
 }, {
-  clipPath: "inset(0% 0% 0% 0% round 0px)",
+  clipPath: "inset(0% 0% 0% 0% round 40px)",
   ease: "power2.out",
-  duration: 2
+  duration: 1
 }, 0);
 
 // Scale image inside the div
@@ -476,6 +540,109 @@ tl6.fromTo("#maskedImage2 img", {
   ease: "power3.out"
 }, 0);
 
+
+
+ //ottuk
+ const { Engine, World, Bodies, Runner } = Matter;
+
+  let engine, world, runner;
+  let animationFrame;
+  const section = document.querySelector("#section6");
+  const reviews = Array.from(section.querySelectorAll(".google-review"));
+  const radius = 50;
+
+  function createPhysicsWorld() {
+    engine = Engine.create();
+    world = engine.world;
+    runner = Runner.create();
+
+    const boundsHeight = section.offsetHeight;
+
+    const floor = Bodies.rectangle(window.innerWidth / 2, boundsHeight - 90, window.innerWidth, 60, { isStatic: true });
+    const wallL = Bodies.rectangle(-10, boundsHeight / 2, 50, boundsHeight, { isStatic: true });
+    const wallR = Bodies.rectangle(window.innerWidth + 10, boundsHeight / 2, 50, boundsHeight, { isStatic: true });
+    World.add(world, [floor, wallL, wallR]);
+
+    const bubbles = reviews.map((el) => {
+      el.style.opacity = "1"; el.style.display = "block";
+      const percentX = parseFloat(el.dataset.x || "50");
+      const x = (percentX / 100) * window.innerWidth;
+      const y = -150 - Math.random() * 100;
+const { Body } = Matter;
+      const body = Bodies.circle(x, y, radius, {
+        restitution: 0.9,
+        friction: 0.05,
+        frictionAir: 0.01,
+        density: 0.001
+      });
+Body.setVelocity(body, {
+  x: gsap.utils.random(-1, 1),    // slight random horizontal wiggle
+  y: gsap.utils.random(5, 12)     // randomized initial fall speed
+});
+      World.add(world, body);
+      return { el, body };
+    });
+
+    function animate() {
+      bubbles.forEach(({ el, body }) => {
+        el.style.transform = `translate(${body.position.x - radius}px, ${body.position.y - radius}px)`;
+      });
+      animationFrame = requestAnimationFrame(animate);
+    }
+
+    Runner.run(runner, engine);
+    animate();
+  }
+
+  function clearPhysicsWorld() {
+  if (engine) {
+    cancelAnimationFrame(animationFrame);
+    Runner.stop(runner);
+    World.clear(world);
+    Engine.clear(engine);
+    engine = null;
+    world = null;
+    runner = null;
+  }
+
+  reviews.forEach(el => {
+    el.style.transition = "";
+    el.style.opacity = "0";
+  });
+
+  gsap.set(reviews, { clearProps: "transform,y" }); // ✅ this line fixes it
+}
+
+  ScrollTrigger.create({
+  trigger: "#section6",
+  start: "top top",
+  onEnter: () => {
+    clearPhysicsWorld();
+    createPhysicsWorld();
+  },
+  onEnterBack: () => {
+    clearPhysicsWorld();
+    createPhysicsWorld();
+  },
+  onLeaveBack: () => {
+  cancelAnimationFrame(animationFrame);
+  if (runner) Matter.Runner.stop(runner);
+
+  gsap.to(reviews, {
+    y: window.innerHeight + 300,
+    duration: () => gsap.utils.random(0.6, 1.4),
+    delay: () => gsap.utils.random(0, 0.4),
+    ease: "power2.in",
+    overwrite: true
+  });
+}
+});
+
+  window.addEventListener("resize", () => {
+    clearPhysicsWorld();
+    createPhysicsWorld();
+  });
+ //dotuk
  
   const menuBtn = document.getElementById('menuCircle');
   const menuCircle = document.getElementById('menuCircle');
