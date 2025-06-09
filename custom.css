@@ -238,3 +238,7 @@ max-height:80vh;
     object-position: center;
   }
 }
+.image-card{
+  max-width:640px;
+  max-height:640px;
+}

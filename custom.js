@@ -124,7 +124,9 @@ gsap.set('.image-card', {
   transformPerspective: 1000, // For the perspecitve effect
   transformOrigin: "center top", 
 });
-
+gsap.set('.big-circle', {
+  scale:0
+});
    const tl3 = gsap.timeline({
     scrollTrigger: {
       trigger: "#section3",
@@ -343,7 +345,7 @@ const tl4 = gsap.timeline({
       trigger: "#section4",
       start: "top top",
        end: "bottom center",
-      scrub: true,
+      scrub: false,
       pin: false,
   
        toggleActions: "play none restart none",
@@ -353,7 +355,7 @@ const tl4 = gsap.timeline({
 
 
 tl4.fromTo("#maskedImage", {
-  clipPath: "inset(40% 40% 40% 40% round 20px)",
+  clipPath: "inset(20% 20% 20% 20% round 20px)",
 }, {
   clipPath: "inset(0% 0% 0% 0% round 20px)",
   ease: "power2.out",
@@ -466,7 +468,7 @@ tl5.to(".big-circle1", {
   duration: 1
 });
 tl5.to(".big-circle-inner", {
-  scale: isMobile ? 2.4 : 1,
+  scale: isMobile ? 2.4 : 0.6,
   
   ease: "none",
   duration: 0.8
@@ -513,7 +515,7 @@ circleCards.forEach((card, i) => {
       trigger: "#section6",
       start: "top top",
       end: "bottom top",
-      scrub: true,
+      scrub:false,
       pin: false,
     }
   });
@@ -613,16 +615,24 @@ Body.setVelocity(body, {
   gsap.set(reviews, { clearProps: "transform,y" }); // ✅ this line fixes it
 }
 
+let physicsCreated = false;
+
   ScrollTrigger.create({
   trigger: "#section6",
   start: "top top",
   onEnter: () => {
-    clearPhysicsWorld();
-    createPhysicsWorld();
+    if (!physicsCreated) {
+      clearPhysicsWorld();
+      createPhysicsWorld();
+      physicsCreated = true;
+    }
   },
   onEnterBack: () => {
-    clearPhysicsWorld();
-    createPhysicsWorld();
+   if (!physicsCreated) {
+      clearPhysicsWorld();
+      createPhysicsWorld();
+      physicsCreated = true;
+    }
   },
   onLeaveBack: () => {
   cancelAnimationFrame(animationFrame);
@@ -635,6 +645,7 @@ Body.setVelocity(body, {
     ease: "power2.in",
     overwrite: true
   });
+  physicsCreated = false;
 }
 });
 
