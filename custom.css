@@ -64,7 +64,37 @@ fill:none;
 #maskedImage2 {
   width: 100%;
   height: auto;
-max-height:80vh;
+  max-height: 80vh;
+  clip-path: circle(0% at center);
+}
+
+@media (max-width: 767px) {
+  #section4,
+  #section6 {
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  #maskedImage,
+  #maskedImage2 {
+    height: 80vh;
+    max-height: 80vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #maskedImage img,
+  #maskedImage2 img {
+    height: 100%;
+    width: auto;
+    max-width: none;
+    object-fit: cover;
+    object-position: center;
+    min-width: 100%;
+  }
 }
 
 #menuCircle, #menuCircle .circle {
@@ -137,7 +167,10 @@ max-height:80vh;
 .circle-clone img {
   opacity: 0;
 }
-
+.split-text {
+  display: inline-block;
+  white-space: nowrap;
+}
 /* Mobile styles for menu clone */
 @media (max-width: 767px) {
   .circle-clone ul {

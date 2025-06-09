@@ -73,13 +73,13 @@ const tl1 = gsap.timeline({
 
 
  const scrollTrack = document.getElementById("scrollTrack");
-
+const isMobile = window.innerWidth <= 768;
   // Create the looping animation timeline (paused initially)
   const scrollTimeline = gsap.timeline({ repeat: -1, paused: true })
     .to(scrollTrack, {
-      xPercent: -50,
+      xPercent: isMobile ? -100 : -80,
       ease: "linear",
-      duration: 10
+        duration: isMobile ? 16 : 10
     });
 
   // Wrap in a ScrollTrigger-bound timeline
@@ -189,51 +189,87 @@ gsap.set('.image-card', {
     }
   });
 
+tl3.from(".big-circle", {
+  scale: 0.4,
+  
+  ease: "none",
+  duration: 1 // full duration of timeline
+},0);
 
-// Loop and animate each card + circle pair together
-imageCards.forEach((imgCard, i) => {
-  const circleCard = circleCards[i];
-  const inTime = i * 2;
-  const exitTime = inTime + 1.2;
 
-  tl3.from(imgCard, {
-    y: window.innerHeight,
-    rotationX: -30,
-    duration: 2,
+tl3.fromTo(
+  "#theMask1 .masker",
+  { drawSVG: "0%" },
+  { drawSVG: "100%", ease: "none", duration: 1 }, 0.1
+  // start after .draw1 finishes
+);
+
+
+
+
+tl3.fromTo(
+  "#theMask2 .masker1",
+  { drawSVG: "0%" },
+  { drawSVG: "100%", ease: "none", duration: 1 }, 0.2
+  // start after .draw1 finishes
+);
+
+
+
+tl3
+.from(imageCards[0], {
+  
+   scale:1.2,
+    duration: 0.8,
+   
     ease: "power2.out"
-  }, inTime);
+  }, 0.3)
 
-  if (circleCard) {
-    tl3.from(circleCard, {
-      x: -500,
-      scale: 0.8,
-      opacity: 0,
-      duration: 1.8,
-      ease: "power2.out"
-    }, inTime);
+.from(circleCards[0], {
+  x:-100,
+  opacity:0,
+   scale:1.2,
+    duration: 0.8,
+   
+    ease: "power2.out"
+  }, 0.3)
 
-    const innerElements = circleCard.querySelectorAll(".circle, img, p");
-    tl3.from(innerElements, {
-      opacity: 0,
-      y: 30,
-      scale: 0.2,
-      duration: 1.2,
-      ease: "power3.out",
-      stagger: 0.2
-    }, inTime + 0.4);
-  }
+.from(imageCards[1], {
+  y: window.innerHeight,
+   scale:0.4,
+    duration: 0.4,
+  
+    ease: "power2.out"
+  }, 0.5) 
+  
+  .from(circleCards[1], {
+  x:-100,
+   scale:1.2,
+    duration: 0.8,
+     opacity:0,
+    ease: "power2.out"
+  }, 0.5)
+  
+  // start 2 seconds after the first image
+.from(imageCards[2], {
+  y: window.innerHeight,
+   scale:0.4,
+    duration: 0.4,
 
-  // EXIT — start fading before next one fully enters
-  tl3.to(imgCard, {
-    y: window.innerHeight,
-    scale: 0.8,
-    rotationX: -30,
-    opacity: 0,
-    duration: 2,
-    ease: "power2.in"
-  }, exitTime);
-});
+    ease: "power2.out"
+  }, 0.8)
+.from(circleCards[2], {
+  y: window.innerHeight,
+   scale:0.4,
+    duration: 0.4,
+  opacity:0,
+    ease: "power2.out"
+  }, 0.8);
 
+
+
+
+  
 circleCards.forEach((circleCard, i) => {
   const offset = gsap.utils.random(-300, 300); // x movement
   const spin = offset * 2; // correlate spin with distance
@@ -242,31 +278,12 @@ circleCards.forEach((circleCard, i) => {
     x: `+=${offset}`,
     rotation: `+=${spin}`,
     scale: 1.05,
-    duration: 1.4,
+    duration: 0.4,
     ease: "power3.out" // ease-out = decelerating = inertia feel
-  }, `+=${i * 0.1}`);
+  }, `>+=${i * 0.1}`);
 });
 
-tl3.fromTo(
-  "#theMask1 .masker",
-  { drawSVG: "0%" },
-  { drawSVG: "100%", ease: "none", duration: 4 }
-);
 
-tl3.from(".big-circle", {
-  scale: 0,
-  
-  ease: "none",
-  duration: imageCards.length * 3 // full duration of timeline
-}, "-1");
-
-
-tl3.fromTo(
-  "#theMask2 .masker1",
-  { drawSVG: "0%" },
-  { drawSVG: "100%", ease: "none", duration: 6 },
-  "+1" // start after .draw1 finishes
-);
 
 
 
@@ -274,7 +291,7 @@ tl3.to(
   ".dogcat",
   {
     scale: 1.4,         // or your desired scale
-    duration: 2.2,      // adjust as needed
+    duration: 0.4,      // adjust as needed
     ease: "power3.out"
   
   },
@@ -297,7 +314,7 @@ const tl4 = gsap.timeline({
 
 
 tl4.fromTo("#maskedImage", {
-  clipPath: "inset(20% 20% 20% 20% round 80px)",
+  clipPath: "inset(20% 20% 20% 20% round 20px)",
 }, {
   clipPath: "inset(0% 0% 0% 0% round 0px)",
   ease: "power2.out",
