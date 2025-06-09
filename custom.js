@@ -147,7 +147,7 @@ gsap.set('.big-circle', {
       position: "absolute",
       top: "50%",
       left: `${centerX}px`,
-      x:isMobile ? -200 : 100,
+      //x:isMobile ? 50 : 100,
       y: 0,
       xPercent: 0,
       yPercent: -50,
@@ -156,9 +156,19 @@ gsap.set('.big-circle', {
       opacity: 1,
      zIndex: z 
     });
-      console.log(card.rotation);
-  });
 
+  });
+if (isMobile) {
+  circleCards.forEach(card => {
+    gsap.set(card, {
+
+      left: "50%",
+      xPercent: -50,
+    
+      
+    });
+  });
+}
     },
   onLeave: () => {
   const section3 = document.querySelector("#section3");
@@ -187,7 +197,7 @@ gsap.set('.big-circle', {
 
     gsap.to(card, {
       y: fallY,
-      x: randomX,
+      //x: randomX,
       ease: "bounce.out",
       duration: randomDuration,
       rotation: 360,
@@ -203,12 +213,24 @@ gsap.set('.big-circle', {
      // yPercent: -50,
      // scale: 1,
       //opacity: 1,
-      x:isMobile ? -200 : 100,
+      //x:isMobile ? 50 : 100,
       position: "absolute",
       zIndex:  circleCards.length - i,
  // Ensure correct stacking order
+
+ 
     });
-  
+  if (isMobile) {
+  circleCards.forEach(card => {
+    gsap.set(card, {
+
+      left: "50%",
+      xPercent: -50,
+    
+      
+    });
+  });
+}
     // Optionally reset timeline playhead:
     tl3.progress(0);
   });
@@ -235,9 +257,9 @@ tl3.to(imageCards[0], {
 tl3.to(circleCards[0], {
   autoAlpha: 1,
   yPercent: -50,
-   x:isMobile ? -200 : 100,
+   //x:isMobile ? 50 : 100,
    zIndex:34,
-  xPercent:0,
+  //xPercent:0,
   rotation: 0,
   scale: 1.6,
   ease: "power2.out",
@@ -280,9 +302,9 @@ tl3.to(imageCards[0], {
 // === STEP 5: circle-card 2 enters
 tl3.to(circleCards[1], {
   autoAlpha: 1,
-  xPercent:0,
+ // xPercent:0,
   zIndex:34,
-   x:isMobile ? -200 : 100,
+   //x:isMobile ? 50 : 100,
   rotation: 0,
   yPercent: -50,
   scale: 1.2,
@@ -327,8 +349,8 @@ tl3.to(circleCards[2], {
   autoAlpha: 1,
   yPercent: -50,
   zIndex:34,
-  xPercent:0,
-   x:isMobile ? -200 : 100,
+  //xPercent:0,
+   //x:isMobile ? 50 : 100,
   rotation: 0,
   scale: 1.2,
   ease: "power2.out",
@@ -353,14 +375,14 @@ tl3.to(imageCards[2], {
 
 // === Background and dogcat scaling
 tl3.to(".big-circle", {
-  scale: isMobile ? 1.4 : 1.2,
+  scale: isMobile ? 0.8 : 1.2,
   
   ease: "power1.out",
   duration: 1
 }, 0);
 
 tl3.to(".dogcat", {
-  scale: isMobile ? 2.3 : 1.2,
+  scale: isMobile ? 1.2 : 2.2,
   ease: "power1.out",
   duration: 1
 }, 0.5);
@@ -378,12 +400,12 @@ tl3.fromTo(
 const tl4 = gsap.timeline({
     scrollTrigger: {
       trigger: "#section4",
-      start: "top top",
+      start: "top -10%",
        end: "bottom center",
       scrub: false,
       pin: false,
   
-       toggleActions: "play none restart none",
+       toggleActions: "play none play none",
       
 }
   });
@@ -588,9 +610,9 @@ tl6.from(split1.chars, {
   opacity: 0,
   y: 20,
   stagger: 0.05,
-  duration: 2,
+  duration: 1,
   ease: "power2.out"
-}, "0.2"); 
+}); 
 
  //ottuk
  const { Engine, World, Bodies, Runner } = Matter;
