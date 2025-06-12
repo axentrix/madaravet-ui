@@ -79,10 +79,16 @@ max-height:80vh;
 @media (max-width: 767px) {
   #section4,
   #section6 {
-    height: 100vh;
+    height: 60vh;
     overflow: hidden;
+    min-height:unset;
   }
-  
+  #section3,
+#section4,
+#section5 {
+  position: relative;
+  z-index: 10;
+}
   #maskedImage,
   #maskedImage2 {
     height: 80vh;
@@ -120,7 +126,19 @@ max-height:80vh;
     justify-content: space-between;
    
   }
+   #maskedImage,
+  #maskedImage2 {
+    max-height: 60vh;
+    max-width: 60vh;
+ 
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
   
+  }
   .additional-info {
     position: relative;
     justify-content: flex-end;
@@ -170,7 +188,15 @@ max-height:80vh;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+.big-circle,
+.dogcat {
+  position: fixed !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
+  pointer-events: none;
+}
 .circle-clone ul, 
 .circle-clone img {
   opacity: 0;
@@ -223,13 +249,7 @@ max-height:80vh;
 }
 
 @media (max-width: 767px) {
-  #maskedImage,
-  #maskedImage2 {
-    height: 100vh;
-    max-height: 100vh;
-    width: auto;
-    overflow: hidden;
-  }
+
   
   #maskedImage img,
   #maskedImage2 img {
@@ -243,4 +263,11 @@ max-height:80vh;
 .image-card{
   max-width:640px;
   max-height:640px;
+}
+.fixedsection{
+  z-index:-1;
+}
+.circle-card {
+  will-change: transform;
+  position: absolute;
 }

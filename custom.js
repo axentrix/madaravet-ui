@@ -25,7 +25,7 @@ gsap.fromTo(
   [".circle-init1", ".circle-init2"],
   { scale: 0, opacity: 0 },
   {
-    scale: 1.5,
+    scale: 1,
     opacity: 1,
     duration: 2,
     ease: "power3.out",
@@ -39,7 +39,7 @@ const tl1 = gsap.timeline({
       start: "top 20%",
       end: "bottom top",
       scrub: true,
-
+toggleActions:"play, reverse, play, restart",
     }
   });
 
@@ -52,17 +52,17 @@ const tl1 = gsap.timeline({
 
 
 .to([".circle-init1"], {
-  scale: 2,
+  scale: 1.4,
   
-  duration: 2,
+  duration: 1,
   ease: "power3.out",
   stagger: 0.3
 }, 1)
 
 .to([".circle-init2"], {
-  scale: 2,
+  scale: 1.4,
   
-  duration: 2,
+  duration: 1,
   ease: "power3.out",
   stagger: 0.3
 }, 1)
@@ -79,7 +79,7 @@ const isMobile = window.innerWidth <= 768;
     .to(scrollTrack, {
       xPercent: isMobile ? -100 : -80,
       ease: "linear",
-        duration: isMobile ? 16 : 10
+        duration: isMobile ? 28 : 16
     });
 
   // Wrap in a ScrollTrigger-bound timeline
@@ -112,13 +112,45 @@ const isMobile = window.innerWidth <= 768;
 
   const scaleMax = gsap.utils.mapRange(1, document.querySelectorAll(".image-card").length, 0.6, 1); 
 
-const time = 2; 
+const time = 3; 
 const imageCards = gsap.utils.toArray(".image-card");
 const circleCards = gsap.utils.toArray(".circle-card");
 const floatingContainer = document.getElementById("floatingBallsContainer");
 //circleCards.forEach(card => floatingContainer.appendChild(card));
+circleCards.forEach((card, i) => {  
+    const parent = card.parentElement;
+    const centerX = parent.offsetWidth / 2 - card.offsetWidth / 2;
+ const z = circleCards.length - i; 
+    gsap.set(card, {
+    
+       position: "fixed",
+  top: "100%",         // just below viewport
+  left: "50%",
+  xPercent: -50,
+  y: 100,              // push it just below screen
+  opacity: 0,
+     zIndex: z,
+     onUpdate: self => {
+      const y = gsap.getProperty(card, "y");
+      console.log("Current y:", y);
+    }
+    });
 
+  });
 
+if (isMobile) {
+  circleCards.forEach(card => {
+    gsap.set(card, {
+
+      left: "50%",
+      xPercent: -50,  
+    
+      
+    });
+  });
+
+}
+const step = 0.8;
 gsap.set('.image-card', {
   y: (index) => 30 * index, // set offset
   transformStyle: "preserve-3d", // For the perspecitve effect
@@ -132,109 +164,15 @@ gsap.set('.big-circle', {
     scrollTrigger: {
       trigger: "#section3",
       start: "top top",
-       end: `bottom+=1000 center`,
+       end: `+=2400`,
       scrub: true,
       pin: true,
       pinSpacing:0,
    toggleActions: "play none restart none",
     onEnter:()=>{
- circleCards.forEach((card, i) => {
-    const parent = card.parentElement;
-    const centerX = parent.offsetWidth / 2 - card.offsetWidth / 2;
- const z = circleCards.length - i; 
-    gsap.set(card, {
-      clearProps: "all",
-      position: "absolute",
-      top: "50%",
-      left: `${centerX}px`,
-      //x:isMobile ? 50 : 100,
-      y: 0,
-      xPercent: 0,
-      yPercent: -50,
-      rotation: 0,
-      scale: 1,
-      opacity: 1,
-     zIndex: z 
-    });
-
-  });
-if (isMobile) {
-  circleCards.forEach(card => {
-    gsap.set(card, {
-
-      left: "50%",
-      xPercent: -50,
-    
-      
-    });
-  });
-}
-    },
-  onLeave: () => {
-  const section3 = document.querySelector("#section3");
-  const section5 = document.querySelector("#section4");
-  const section3Top = section3.getBoundingClientRect().top + window.scrollY;
-  const section6Top = section5.getBoundingClientRect().bottom + window.scrollY;
-
-
-  circleCards.forEach((card, i) => {
-
-       const cardHeight = card.offsetHeight;
-    const fallY = section6Top - section3Top - cardHeight/2;
-
-    const randomX = gsap.utils.random(-250, 250);
-    const randomDuration = gsap.utils.random(1.2, 2.5);
-
-   gsap.set(card, {
-      clearProps: true,
-      position: "fixed",
-      top: card.getBoundingClientRect().top + window.scrollY + "px",
-      left: card.getBoundingClientRect().left + window.scrollX + "px",
-      xPercent: 0,
-      yPercent: 0,
-      zIndex: 9999
-    });
-
-    gsap.to(card, {
-      y: fallY,
-      //x: randomX,
-      ease: "bounce.out",
-      duration: randomDuration,
-      rotation: 360,
-      
-    });
-  });
-},
-   onEnterBack: () => {
-   circleCards.forEach((card, i) => {
-    gsap.set(card, {
-     // clearProps: "all",
-     // xPercent: -40,
-     // yPercent: -50,
-     // scale: 1,
-      //opacity: 1,
-      //x:isMobile ? 50 : 100,
-      position: "absolute",
-      zIndex:  circleCards.length - i,
- // Ensure correct stacking order
-
  
-    });
-  if (isMobile) {
-  circleCards.forEach(card => {
-    gsap.set(card, {
-
-      left: "50%",
-      xPercent: -50,
-    
-      
-    });
-  });
-}
-    // Optionally reset timeline playhead:
-    tl3.progress(0);
-  });
-},
+    },
+  
 
     }
   });
@@ -249,30 +187,34 @@ tl3.to(imageCards[0], {
   autoAlpha: 1,
   rotationX: 0,
   scale: 0.98,
-  duration: 0.4, // ⬅️ slower appearance
+  duration: 0.4,
   ease: "power2.out"
-}, 0);
+}, 0 * step);
 
-// === STEP 2: circle-card 1 enters (unchanged)
 tl3.to(circleCards[0], {
   autoAlpha: 1,
+  top: "50%",
   yPercent: -50,
-   //x:isMobile ? 50 : 100,
-   zIndex:34,
-  //xPercent:0,
+  zIndex: 34,
   rotation: 0,
-  scale: 1.6,
+  scale: 1.2,
   ease: "power2.out",
-  duration: 0.2
-}, 0.1); // slightly later
+  duration: 0.4
+}, 0 * step + 0.1);
 
-// === STEP 3: circle-card 1 drops
 tl3.to(circleCards[0], {
   y: window.innerHeight,
   autoAlpha: 0,
   ease: "power2.in",
-  duration: 0.4 // ⬅️ slightly longer drop
-}, 0.45);
+  duration: 0.4
+}, 0 * step + 0.5);
+
+tl3.to(imageCards[0], {
+  y: window.innerHeight,
+  autoAlpha: 0,
+  ease: "power2.inOut",
+  duration: 0.4
+}, 0 * step + 0.6);
 
 // === STEP 4: image-card 2 enters slightly before image-card 1 exits
 tl3.fromTo(imageCards[1], {
@@ -280,7 +222,6 @@ tl3.fromTo(imageCards[1], {
   yPercent: 50,
   rotationX: -30,
   scale: 1,
-  
   transformOrigin: "center center"
 }, {
   autoAlpha: 1,
@@ -289,112 +230,90 @@ tl3.fromTo(imageCards[1], {
   rotationX: 0,
   duration: 0.4,
   ease: "power2.out"
-}, 0.38); // ⬅️ overlaps slightly with previous drop
+}, 1 * step);
 
-// === image-card 1 staggers out a bit later
-tl3.to(imageCards[0], {
-  y: window.innerHeight,
-  autoAlpha: 0,
-  ease: "power2.inOut",
-  duration: 0.4
-}, 0.42);
-
-// === STEP 5: circle-card 2 enters
 tl3.to(circleCards[1], {
   autoAlpha: 1,
- // xPercent:0,
-  zIndex:34,
-   //x:isMobile ? 50 : 100,
-  rotation: 0,
+  top: "50%",
   yPercent: -50,
+  zIndex: 34,
+  rotation: 0,
   scale: 1.2,
   ease: "power2.out",
   duration: 0.4
-}, 0.55);
+}, 1 * step + 0.1);
 
-// === STEP 6: circle-card 2 drops
 tl3.to(circleCards[1], {
   y: window.innerHeight,
   autoAlpha: 0,
   ease: "power2.in",
   duration: 0.4
-}, 0.8);
+}, 1 * step + 0.5);
+
+tl3.to(imageCards[1], {
+  y: window.innerHeight,
+  autoAlpha: 0,
+  ease: "power2.inOut",
+  duration: 0.4
+}, 1 * step + 0.6);
 
 // === STEP 7: image-card 3 enters with overlap
 tl3.fromTo(imageCards[2], {
   autoAlpha: 0,
   yPercent: 50,
   rotationX: -30,
-  scale:1,
+  scale: 1,
   transformOrigin: "center center"
 }, {
   autoAlpha: 1,
-  yPercent: -15,
+  yPercent: 0,
   rotationX: 0,
   scale: 0.98,
   duration: 0.4,
   ease: "power2.out"
-}, 0.68); // slightly before image 2 ends
+}, 2 * step);
 
-// === image-card 2 staggers out
-tl3.to(imageCards[1], {
-  y: window.innerHeight,
-  autoAlpha: 0,
-  ease: "power2.inOut",
-  duration: 0.4
-}, 0.73);
-
-// === STEP 8: circle-card 3 enters
 tl3.to(circleCards[2], {
   autoAlpha: 1,
+  top: "50%",
   yPercent: -50,
-  zIndex:34,
-  //xPercent:0,
-   //x:isMobile ? 50 : 100,
+  zIndex: 34,
   rotation: 0,
   scale: 1.2,
   ease: "power2.out",
   duration: 0.4
-}, 0.88);
+}, 2 * step + 0.1);
 
-// === STEP 9: circle-card 3 drops
 tl3.to(circleCards[2], {
   y: window.innerHeight,
   autoAlpha: 0,
   ease: "power2.in",
   duration: 0.4
-}, 0.98);
+}, 2 * step + 0.5);
 
-// === STEP 10: image-card 3 drops and fades
 tl3.to(imageCards[2], {
   y: window.innerHeight,
   autoAlpha: 0,
   ease: "power2.inOut",
-  duration: 0.8
-}, 1.0);
-
-// === Background and dogcat scaling
-tl3.to(".big-circle", {
-  scale: isMobile ? 0.8 : 1.2,
-  
-  ease: "power1.out",
-  duration: 1
-}, 0);
-
-tl3.to(".dogcat", {
-  scale: isMobile ? 1.2 : 2.2,
-  ease: "power1.out",
-  duration: 1
-}, 0.5);
-tl3.fromTo(
-  "#theMask1 .masker",
-  { drawSVG: "0%" },
-  { drawSVG: "100%", ease: "none", duration: 1 }, 0.1
-  // start after .draw1 finishes
-);
+  duration: 0.4
+}, 2 * step + 0.6);
 
 
+tl3.add(gsap.fromTo("#theMask1 .masker", {
+  drawSVG: "0%"
+}, {
+  drawSVG: "100%",
+  ease: "none",
+  duration: 1.2 // match tl3 total duration
+}), 0);
 
+tl3.add(gsap.fromTo("#theMask1 .masker", {
+  drawSVG: "100%"
+}, {
+  drawSVG: "0%",
+  ease: "none",
+  duration: 1.2 // match tl3 total duration
+}), 1);
 
 
 const tl4 = gsap.timeline({
@@ -412,9 +331,9 @@ const tl4 = gsap.timeline({
 
 
 tl4.fromTo("#maskedImage", {
-  clipPath: "inset(20% 20% 20% 20% round 20px)",
-}, {
   clipPath: "inset(0% 0% 0% 0% round 20px)",
+}, {
+  clipPath: isMobile ? "inset(20% 10% round 20px)" : "inset(5% 5% round 20px)",
   ease: "power2.out",
   duration: 2
 }, 0);
@@ -431,37 +350,13 @@ tl4.fromTo("#maskedImage img", {
 const section5 = document.querySelector("#section5");
 
 
-function dropCirclesToBottom() {
-  const section5Top = section5.getBoundingClientRect().top + window.scrollY;
-  const section5Bottom = section5.getBoundingClientRect().bottom + window.scrollY;
-
-  circleCards.forEach((card) => {
-    const cardHeight = card.offsetHeight;
-    const currentTop = card.getBoundingClientRect().top + window.scrollY;
-    const distanceToBottom = section5Bottom - currentTop - cardHeight;
-
-    gsap.set(card, {
-      clearProps: true,
-      position: "absolute",
-      zIndex: 1000
-    });
-
-    gsap.to(card, {
-      y: distanceToBottom,
-      ease: "bounce.out",
-      duration: gsap.utils.random(1.2, 2.2),
-      rotation: gsap.utils.random(100, 300)
-    });
-  });
-}
-
 
 
 const tl5 = gsap.timeline({
     scrollTrigger: {
       trigger: "#section5",
-      start: "top top",
-       end: "+=200%",
+      start: "top -100px",
+       end: "+=140%",
       scrub: true,
       pin: true,
      
@@ -472,20 +367,6 @@ const tl5 = gsap.timeline({
     
   });
  
-tl5.add(() => {
-  circleCards.forEach(card => {
-    gsap.set(card, {
-      clearProps: "all",
-      position: "absolute",
-      zIndex: "",
-      top: "",
-      left: "",
-      x: 0,
-      y: 0,
-      rotation: 0
-    });
-  });
-});
 
 
 const split1 = new SplitText(".splittitle1", { type: "chars" });
@@ -516,10 +397,10 @@ tl5.from(split2.chars, {
   
  ease: "power2.out",
   duration: 1
-});
+}, "0.1");
 
 tl5.to(".big-circle1", {
-  scale: isMobile ? 3 : 1,
+  scale: isMobile ? 2.8 : 1,
   
   ease: "none",
   duration: 1
@@ -528,17 +409,17 @@ tl5.to(".big-circle-inner", {
   scale: isMobile ? 2.6 : 1,
   
   ease: "none",
-  duration: 0.8
+  duration: 0.4
 },">+0.3");
 
 
- tl5.fromTo(
-  "#theMask2 .masker1",
-  { drawSVG: "0%" },
-  { drawSVG: "100%", ease: "none", duration: 1 }, 0
-  // start after .draw1 finishes
-);
-
+tl5.add(gsap.fromTo("#theMask2 .masker", {
+  drawSVG: "0%"
+}, {
+  drawSVG: "100%",
+  ease: "none",
+  duration: 2.4 // match tl3 total duration
+}), 0);
 gsap.fromTo(
   "#theMask2 .masker1",
   { drawSVG: "0%" },
@@ -554,24 +435,53 @@ gsap.fromTo(
   }
 );
 
-circleCards.forEach((card, i) => {
-  const randomX = gsap.utils.random(-200, 200);
-  const randomRotation = gsap.utils.random(-180, 180);
 
-  tl5.from(card, {
-    x: randomX,
-    rotation: randomRotation,
-    opacity: 0,
-    duration: 1.5,
-    ease: "power3.out"
-  }, "<+0.3"); // slightly after titles
+
+
+const circleAnim = gsap.timeline({
+  scrollTrigger: {
+    trigger: "#section3",
+    start: "top top",
+    end: "+=4400", // matches tl3
+    scrub: true
+  }
 });
+const fullDuration = 2.4; // match the tl3 timeline range
+circleAnim.to(".big-circle", {
+  scale: isMobile ? 0.8 : 1.3,
+  ease: "none",
+  duration: fullDuration * 0.25
+}, 0);
+
+circleAnim.to(".dogcat", {
+  scale: isMobile ? 1.2 : 2.5,
+  ease: "none",
+  duration: fullDuration * 0.25
+}, 0.1);
+
+circleAnim.to(".dogcat", {
+  scale: isMobile ? 1.7 : 3,
+  ease: "none",
+  duration: fullDuration * 0.25
+}, 0.5);
+
+circleAnim.to(".big-circle", {
+  scale: isMobile ? 0.3 : 1,
+  ease: "none",
+  duration: fullDuration * 0.25
+}, 1);
+
+circleAnim.to(".dogcat", {
+  scale: isMobile ? 1 : 2,
+  ease: "none",
+  duration: fullDuration * 0.25
+}, 1.5);
 
  const tl6 = gsap.timeline({
     scrollTrigger: {
       trigger: "#section6",
-      start: "top top",
-      end: "bottom top",
+      start: "top 20%",
+      end: isMobile ? "+=1200" : "+=2400",
       scrub:false,
       pin: false,
     }
@@ -583,9 +493,9 @@ const maskedImage2 = document.querySelector("#maskedImage2");
 
 
 tl6.fromTo("#maskedImage2", {
-  clipPath: "inset(60% 60% 60% 60% round 40px)",
-}, {
   clipPath: "inset(0% 0% 0% 0% round 40px)",
+}, {
+ clipPath: isMobile ? "inset(20% 10% round 20px)" : "inset(5% 5% round 20px)",
   ease: "power2.out",
   duration: 1
 }, 0);
@@ -601,7 +511,7 @@ tl6.fromTo("#maskedImage2 img", {
 tl6.fromTo(".google", {
   scale: 1
 }, {
-  scale: 2,
+  scale: 1.4,
   duration: 2,
   ease: "power3.out"
 }, 0);
@@ -686,24 +596,26 @@ Body.setVelocity(body, {
 }
 
 let physicsCreated = false;
-
-  ScrollTrigger.create({
+ScrollTrigger.create({
   trigger: "#section6",
-  start: "top top",
+  start: "top 25%",
   onEnter: () => {
     if (!physicsCreated) {
       clearPhysicsWorld();
       createPhysicsWorld();
       physicsCreated = true;
+      console.log("Physics created");
     }
   },
   onEnterBack: () => {
-   if (!physicsCreated) {
+    if (!physicsCreated) {
       clearPhysicsWorld();
       createPhysicsWorld();
       physicsCreated = true;
+      console.log("Physics re-created");
     }
   },
+  
   onLeaveBack: () => {
   cancelAnimationFrame(animationFrame);
   if (runner) Matter.Runner.stop(runner);
@@ -827,6 +739,11 @@ let physicsCreated = false;
         menuOpen = false;
     }
   });
+  window.addEventListener("load", () => {
+  setTimeout(() => {
+    ScrollTrigger.refresh();
+  }, 500);
+});
 window.addEventListener("resize", () => {
   ScrollTrigger.refresh(true);
 
