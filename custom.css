@@ -271,3 +271,41 @@ max-height:80vh;
   will-change: transform;
   position: absolute;
 }
+
+#menuCircleClone.open + .bg-overlay{
+  content:"";
+  display:flex;
+  position:absolute;
+  background:rgba(0,0,0,0.4);
+  width:100%;
+  height:100%;  
+  top:0;
+  left:0;
+  z-index: 8999;
+}
+/* Make swiper container full width or whatever width you want */
+.swiper {
+  width: 100%;
+  max-width: 100vw; /* avoid overflow */
+}
+
+/* Swiper wrapper uses flex, no need to touch */
+
+/* Make each slide size correctly */
+.swiper-slide {
+  width: auto; /* let Swiper control width */
+  display: flex;
+  justify-content: center; /* center content */
+  align-items: center;
+}
+
+/* Make images fill their slide but keep aspect ratio */
+.swiper-slide img {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain; /* or cover depending on your need */
+  display: block;
+  user-select: none;
+  pointer-events: none;
+}

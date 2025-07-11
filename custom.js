@@ -1,5 +1,41 @@
     gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, Physics2DPlugin, SplitText);
 
+
+function initAnimations() {
+const swiper = new Swiper('.mySwiper', {
+  loop: true,
+  slidesPerView: 4,
+  slidesPerGroup: 4,
+  spaceBetween: 16,
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+      slidesPerGroup: 1,
+    },
+    640: {
+      slidesPerView: 2,
+      slidesPerGroup: 2,
+    },
+    1024: {
+      slidesPerView: 4,
+      slidesPerGroup: 4,
+    },
+  },
+});
+
+
 // Header opacity on scroll
 ScrollTrigger.create({
   start: 0,
@@ -152,7 +188,7 @@ if (isMobile) {
 }
 const step = 0.8;
 gsap.set('.image-card', {
-  y: (index) => 30 * index, // set offset
+  //y: (index) => 30 * index, // set offset
   transformStyle: "preserve-3d", // For the perspecitve effect
   transformPerspective: 1000, // For the perspecitve effect
   transformOrigin: "center top", 
@@ -164,7 +200,7 @@ gsap.set('.big-circle', {
     scrollTrigger: {
       trigger: "#section3",
       start: "top top",
-       end: `+=2400`,
+       end: `+=4200`,
       scrub: true,
       pin: true,
       pinSpacing:0,
@@ -177,11 +213,12 @@ gsap.set('.big-circle', {
     }
   });
 tl3.set(imageCards, {
-  autoAlpha: 0,
-  scale: 1,
-  rotationX: -30,
-  transformOrigin: "center center"
+ // autoAlpha: 0,
+ scale: 1.1,
+ // rotationX: -30,
+ // transformOrigin: "center center"
 });
+tl3.set(imageCards[0], { autoAlpha: 100, rotationX: 0});
 // === STEP 1: image-card 1 appears smoothly
 tl3.to(imageCards[0], {
   autoAlpha: 1,
@@ -192,7 +229,7 @@ tl3.to(imageCards[0], {
 }, 0 * step);
 
 tl3.to(circleCards[0], {
-  autoAlpha: 1,
+ autoAlpha: 1,
   top: "50%",
   yPercent: -50,
   zIndex: 34,
@@ -292,8 +329,8 @@ tl3.to(circleCards[2], {
 }, 2 * step + 0.5);
 
 tl3.to(imageCards[2], {
-  y: window.innerHeight,
-  autoAlpha: 0,
+  scale: 0.8,
+ 
   ease: "power2.inOut",
   duration: 0.4
 }, 2 * step + 0.6);
@@ -313,34 +350,34 @@ tl3.add(gsap.fromTo("#theMask1 .masker", {
   drawSVG: "0%",
   ease: "none",
   duration: 1.2 // match tl3 total duration
-}), 1);
+}), 1.4);
 
 
 const tl4 = gsap.timeline({
     scrollTrigger: {
       trigger: "#section4",
-      start: "top -10%",
-       end: "bottom center",
+      start: "top 20%",
+       end: "-=80%",
       scrub: false,
       pin: false,
   
-       toggleActions: "play none play none",
+       toggleActions: "play pause reverse pause",
       
 }
   });
 
-
+ // start of section4
 tl4.fromTo("#maskedImage", {
-  clipPath: "inset(0% 0% 0% 0% round 20px)",
+  clipPath: "inset(10% 10% 10% 10% round 20px)",
 }, {
-  clipPath: isMobile ? "inset(20% 10% round 20px)" : "inset(5% 5% round 20px)",
+  clipPath: isMobile ? "inset(20% 10% round 20px)" : "inset(18% 18% round 20px)",
   ease: "power2.out",
-  duration: 2
+  duration: 1
 }, 0);
 
 // Scale image inside the div
 tl4.fromTo("#maskedImage img", {
-  scale: 1.2
+  scale: 1.3
 }, {
   scale: 1,
   duration: 2,
@@ -540,7 +577,9 @@ tl6.from(split1.chars, {
 
     const boundsHeight = section.offsetHeight;
 
-    const floor = Bodies.rectangle(window.innerWidth / 2, boundsHeight - 90, window.innerWidth, 60, { isStatic: true });
+   const floor = Bodies.rectangle(window.innerWidth / 2, boundsHeight/2, window.innerWidth, 60, { isStatic: true });
+console.log(section.offsetHeight);
+    
     const wallL = Bodies.rectangle(-10, boundsHeight / 2, 50, boundsHeight, { isStatic: true });
     const wallR = Bodies.rectangle(window.innerWidth + 10, boundsHeight / 2, 50, boundsHeight, { isStatic: true });
     World.add(world, [floor, wallL, wallR]);
@@ -635,110 +674,111 @@ ScrollTrigger.create({
  //dotuk
  
   const menuBtn = document.getElementById('menuCircle');
+    const closeBtn = document.getElementById('bg-overlay');
   const menuCircle = document.getElementById('menuCircle');
   let menuOpen = false;
   const lines = document.querySelectorAll('.bars .line');
   menuBtn.addEventListener('click', () => {
-    if (!menuOpen) {
-        // Rotate lines to form an X
-        gsap.to(lines[0], { rotation: 45, y: 6, duration: 0.3 });
-        gsap.to(lines[1], { rotation: 135, y: -16, duration: 0.3 });
-  
-        // Add open class to trigger the overlay
-        menuCircle.classList.add('open');
-     
-        // Create a clone of the menuCircle for the animation
-        const menuClone = menuCircle.cloneNode(true);
-        menuClone.id = "menuCircleClone";
-        menuClone.classList.add("circle-clone");
-        document.body.appendChild(menuClone);
-        
-        // Position and style the clone
-        gsap.set(menuClone, {
-            position: "fixed",
-            top: menuCircle.getBoundingClientRect().top + "px",
-            left: menuCircle.getBoundingClientRect().left + "px",
-            width: menuCircle.offsetWidth + "px",
-            height: menuCircle.offsetHeight + "px",
-            zIndex: 9999,
-            backgroundColor: "#167DFF",
-            borderRadius: "50%"
-        });
-        
-        // Hide the original menuCircle
-        gsap.set(menuCircle, { opacity: 0 });
-        
-        // Animate the clone to full size
-        // Use responsive sizing based on screen width
-        const cloneSize = window.innerWidth < 768 ? "120vw" : "70vh";
-        
-        gsap.to(menuClone, {
-            top: "50%",
-            left: "50%",
-            xPercent: -50,
-            yPercent: -50,
-            width: cloneSize,
-            height: cloneSize,
-            borderRadius: "50%",
-            ease: "elastic.out(1, 0.5)",
-            duration: 1
-        });
-        
-        // Show menu items and logo in the clone
-        const menuItems = menuClone.querySelector('ul');
-        const menuLogo = menuClone.querySelector('img');
-        if (menuItems && menuLogo) {
-          menuOpen=true
-            gsap.to([menuItems, menuLogo], {
-                opacity: 1,
-                duration: 0.2,
-                delay: 0.5
-            });
-        }
+  if (!menuOpen) {
+    // Rotate lines to form an X
+    //gsap.to(lines[0], { rotation: 45, y: 6, duration: 0.3 });
+    //gsap.to(lines[1], { rotation: 135, y: -16, duration: 0.3 });
 
+    // Add open class to trigger the overlay
+    menuCircle.classList.add('open');
 
-        menuOpen = true;
-    } else {
-        // Get the clone
-        const menuClone = document.getElementById('menuCircleClone');
-        
-        // Hide menu items and logo in the clone
-        const menuItems = menuClone.querySelector('ul');
-        const menuLogo = menuClone.querySelector('img');
-        if (menuItems && menuLogo) {
-            gsap.to([menuItems, menuLogo], {
-                opacity: 0,
-                duration: 0.2
-            });
-        }
-        
-        // Remove open class to hide the overlay
-        menuCircle.classList.remove('open');
-        
-        // Reset lines to original position
-        gsap.to(lines[0], { rotation: 0, y: 0, duration: 0.3 });
-        gsap.to(lines[1], { rotation: 0, y: 0, duration: 0.3 });
+    // Create the background overlay
+    const bg = document.createElement("div");
+    bg.className = "bg-overlay";
+    bg.style.cssText = `
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9998;
+      background: rgba(0,0,0,0.3);
+    `;
+    document.body.appendChild(bg);
 
-        // Animate the clone back to original position and then remove it
-        gsap.to(menuClone, {
-            top: menuCircle.getBoundingClientRect().top + "px",
-            left: menuCircle.getBoundingClientRect().left + "px",
-            width: "60px",
-            height: "60px",
-            borderRadius: "100%",
-            ease: "power2.inOut",
-            duration: 0.5,
-            onComplete: function() {
-                // Show the original menuCircle
-                gsap.set(menuCircle, { opacity: 1 });
-                // Remove the clone
-                menuClone.parentNode.removeChild(menuClone);
-            }
-        });
-        
-        menuOpen = false;
+    // Create and style the clone
+    const menuClone = menuCircle.cloneNode(true);
+    menuClone.id = "menuCircleClone";
+    menuClone.classList.add("circle-clone");
+    document.body.appendChild(menuClone);
+
+    gsap.set(menuClone, {
+      position: "fixed",
+      top: menuCircle.getBoundingClientRect().top + "px",
+      left: menuCircle.getBoundingClientRect().left + "px",
+      width: menuCircle.offsetWidth + "px",
+      height: menuCircle.offsetHeight + "px",
+      zIndex: 9999,
+      backgroundColor: "#167DFF",
+      borderRadius: "50%"
+    });
+
+    gsap.set(menuCircle, { opacity: 0 });
+
+    const cloneSize = window.innerWidth < 768 ? "120vw" : "70vh";
+
+    gsap.to(menuClone, {
+      top: "50%",
+      left: "50%",
+      xPercent: -50,
+      yPercent: -50,
+      width: cloneSize,
+      height: cloneSize,
+      borderRadius: "50%",
+      ease: "elastic.out(1, 0.5)",
+      duration: 1
+    });
+
+    const menuItems = menuClone.querySelector('ul');
+    const menuLogo = menuClone.querySelector('img');
+    if (menuItems && menuLogo) {
+      gsap.to([menuItems, menuLogo], {
+        opacity: 1,
+        duration: 0.2,
+        delay: 0.5
+      });
     }
-  });
+
+    // ✅ Click anywhere on bg or menuClone .bars to close
+    function closeMenu() {
+      const lines = menuClone.querySelectorAll('.bars .line');
+      gsap.to(lines[0], { rotation: 0, y: 0, duration: 0.3 });
+      gsap.to(lines[1], { rotation: 0, y: 0, duration: 0.3 });
+
+      menuCircle.classList.remove('open');
+
+      gsap.to(menuClone, {
+        top: menuCircle.getBoundingClientRect().top + "px",
+        left: menuCircle.getBoundingClientRect().left + "px",
+        width: "60px",
+        height: "60px",
+        borderRadius: "100%",
+        ease: "power2.inOut",
+        duration: 0.5,
+        onComplete: function () {
+          gsap.set(menuCircle, { opacity: 1 });
+          menuClone.remove();
+          bg.remove();
+        }
+      });
+
+      menuOpen = false;
+    }
+
+    bg.addEventListener('click', closeMenu);
+
+    const cloneBars = menuClone.querySelector('.bars');
+    if (cloneBars) {
+      cloneBars.addEventListener('click', closeMenu);
+    }
+
+    menuOpen = true;
+  }
+});
   window.addEventListener("load", () => {
   setTimeout(() => {
     ScrollTrigger.refresh();
@@ -755,4 +795,57 @@ window.addEventListener("resize", () => {
     el.style.opacity = "0";
     el.style.transform = "";
   });
+});
+
+  
+
+}
+
+let currentLang = 'bg';
+let translations = {};
+
+async function loadTranslations() {
+  try {
+    const response = await fetch('/lang.json');
+    translations = await response.json();
+    applyTranslations(currentLang);
+   initAnimations(); // initialize animations after translations are applied
+    
+    // Hide the loader element after loading and initialization
+    const loader = document.getElementById('loader');
+    if (loader) {
+      loader.style.display = 'none';
+    }
+    
+  } catch (error) {
+    console.error('Error loading translations:', error);
+  }
+}
+
+function applyTranslations(lang) {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (translations[lang] && translations[lang][key]) {
+      el.innerHTML = translations[lang][key];
+    }
+  });
+
+  // Update toggle button text
+  const toggleBtn = document.getElementById('language-toggle');
+  if (toggleBtn && translations[lang]['languageToggle']) {
+    toggleBtn.textContent = translations[lang]['languageToggle'];
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadTranslations();
+
+  const toggleBtn = document.getElementById('language-toggle');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      currentLang = currentLang === 'bg' ? 'en' : 'bg';
+      applyTranslations(currentLang);
+      initAnimations(); // re-initialize animations on language toggle
+    });
+  }
 });

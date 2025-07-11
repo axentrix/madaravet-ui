@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Facebook User Photos</title>
+</head>
+<body>
+  <fb:login-button 
+    scope="user_photos"
+    onlogin="checkLoginState();">
+  </fb:login-button>
+
+  <div id="photo-container"></div>
+
+  <script async defer crossorigin="anonymous" 
+    src="https://connect.facebook.net/en_US/sdk.js"></script>
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: 'YOUR_APP_ID',
+        cookie: true,
+        xfbml: true,
+        version: 'v19.0'
+      });
+
+      FB.AppEvents.logPageView();
+    };
+
+    function checkLoginState() {
+      FB.getLoginStatus(function (response) {
+        if (response.status === 'connected') {
+          getUserPhotos(response.authResponse.accessToken);
+        }
+      });
+    }
+
+    function getUserPhotos(token) {
+      fetch(`https://graph.facebook.com/me/photos?fields=images,name&access_token=${token}`)
+        .then(res => res.json())
+        .then(data => {
+          const container = document.getElementById('photo-container');
+          data.data.forEach(photo => {
+            const img = document.createElement('img');
+            img.src = photo.images[0].source;
+            img.style.width = '200px';
+            img.style.margin = '10px';
+            container.appendChild(img);
+          });
+        });
+    }
+  </script>
+</body>
+</html>
