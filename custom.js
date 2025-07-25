@@ -525,42 +525,8 @@ circleAnim.to(".dogcat", {
   });
 
 
-const maskedImage2 = document.querySelector("#maskedImage2");
 
-
-
-tl6.fromTo("#maskedImage2", {
-  clipPath: "inset(0% 0% 0% 0% round 40px)",
-}, {
- clipPath: isMobile ? "inset(20% 10% round 20px)" : "inset(5% 5% round 20px)",
-  ease: "power2.out",
-  duration: 1
-}, 0);
-
-// Scale image inside the div
-tl6.fromTo("#maskedImage2 img", {
-  scale: 1.2
-}, {
-  scale: 1,
-  duration: 2,
-  ease: "power3.out"
-}, 0);
-tl6.fromTo(".google", {
-  scale: 1
-}, {
-  scale: 1.4,
-  duration: 2,
-  ease: "power3.out"
-}, 0);
-const split3 = new SplitText(".splittitle3", { type: "chars" });
-tl6.from(split1.chars, {
-  opacity: 0,
-  y: 20,
-  stagger: 0.05,
-  duration: 1,
-  ease: "power2.out"
-}); 
-
+ //ottuk
  //ottuk
  const { Engine, World, Bodies, Runner } = Matter;
 
@@ -576,10 +542,10 @@ tl6.from(split1.chars, {
     runner = Runner.create();
 
     const boundsHeight = section.offsetHeight;
+const floorY = window.innerHeight - 30; // or section.getBoundingClientRect().bottom
+const floor = Bodies.rectangle(window.innerWidth / 2, floorY, window.innerWidth, 60, { isStatic: true });
 
-   const floor = Bodies.rectangle(window.innerWidth / 2, boundsHeight/2, window.innerWidth, 60, { isStatic: true });
-console.log(section.offsetHeight);
-    
+   // const floor = Bodies.rectangle(window.innerWidth / 2, boundsHeight - 90, window.innerWidth, 60, { isStatic: true });
     const wallL = Bodies.rectangle(-10, boundsHeight / 2, 50, boundsHeight, { isStatic: true });
     const wallR = Bodies.rectangle(window.innerWidth + 10, boundsHeight / 2, 50, boundsHeight, { isStatic: true });
     World.add(world, [floor, wallL, wallR]);
@@ -634,27 +600,17 @@ Body.setVelocity(body, {
   gsap.set(reviews, { clearProps: "transform,y" }); // ✅ this line fixes it
 }
 
-let physicsCreated = false;
-ScrollTrigger.create({
+  ScrollTrigger.create({
   trigger: "#section6",
-  start: "top 25%",
+  start: "top top",
   onEnter: () => {
-    if (!physicsCreated) {
-      clearPhysicsWorld();
-      createPhysicsWorld();
-      physicsCreated = true;
-      console.log("Physics created");
-    }
+    clearPhysicsWorld();
+    createPhysicsWorld();
   },
   onEnterBack: () => {
-    if (!physicsCreated) {
-      clearPhysicsWorld();
-      createPhysicsWorld();
-      physicsCreated = true;
-      console.log("Physics re-created");
-    }
+    clearPhysicsWorld();
+    createPhysicsWorld();
   },
-  
   onLeaveBack: () => {
   cancelAnimationFrame(animationFrame);
   if (runner) Matter.Runner.stop(runner);
@@ -666,10 +622,49 @@ ScrollTrigger.create({
     ease: "power2.in",
     overwrite: true
   });
-  physicsCreated = false;
 }
 });
 
+  window.addEventListener("resize", () => {
+    clearPhysicsWorld();
+    createPhysicsWorld();
+  });
+ //dotuk
+const maskedImage2 = document.querySelector("#maskedImage2");
+
+
+
+tl6.fromTo("#maskedImage2", {
+  clipPath: "inset(0% 0% 0% 0% round 40px)",
+}, {
+ clipPath: isMobile ? "inset(20% 10% round 20px)" : "inset(5% 5% round 20px)",
+  ease: "power2.out",
+  duration: 1
+}, 0);
+
+// Scale image inside the div
+tl6.fromTo("#maskedImage2 img", {
+  scale: 1.2
+}, {
+  scale: 1,
+  duration: 2,
+  ease: "power3.out"
+}, 0);
+tl6.fromTo(".google", {
+  scale: 1
+}, {
+  scale: 1.4,
+  duration: 2,
+  ease: "power3.out"
+}, 0);
+const split3 = new SplitText(".splittitle3", { type: "chars" });
+tl6.from(split1.chars, {
+  opacity: 0,
+  y: 20,
+  stagger: 0.05,
+  duration: 1,
+  ease: "power2.out"
+}); 
 
  //dotuk
  
