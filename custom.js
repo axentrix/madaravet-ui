@@ -7,9 +7,10 @@ const swiper = new Swiper('.mySwiper', {
   slidesPerView: 4,
   slidesPerGroup: 4,
   spaceBetween: 16,
+
   autoplay: {
     delay: 3000,
-    disableOnInteraction: false,
+   disableOnInteraction: false,
   },
   pagination: {
     el: '.swiper-pagination',
@@ -21,8 +22,8 @@ const swiper = new Swiper('.mySwiper', {
   },
   breakpoints: {
     0: {
-      slidesPerView: 1,
-      slidesPerGroup: 1,
+      slidesPerView: 2,
+      slidesPerGroup: 2,
     },
     640: {
       slidesPerView: 2,
@@ -356,33 +357,49 @@ tl3.add(gsap.fromTo("#theMask1 .masker", {
 const tl4 = gsap.timeline({
     scrollTrigger: {
       trigger: "#section4",
-      start: "top 20%",
-       end: "-=80%",
+    start: "top 20%",
+      end: "top center",
+    
       scrub: false,
       pin: false,
   
-       toggleActions: "play pause reverse pause",
+      toggleActions: "play play reverse play",
       
 }
   });
 
  // start of section4
 tl4.fromTo("#maskedImage", {
-  clipPath: "inset(10% 10% 10% 10% round 20px)",
+  clipPath: "inset(50% 50% 150% 50% round 999px)",
 }, {
-  clipPath: isMobile ? "inset(20% 10% round 20px)" : "inset(18% 18% round 20px)",
+ clipPath: isMobile ? "inset(0% 0% round 20px)" : "inset(5% 5% round 20px)",
   ease: "power2.out",
   duration: 1
 }, 0);
 
 // Scale image inside the div
 tl4.fromTo("#maskedImage img", {
-  scale: 1.3
+  scale: 1.4
 }, {
   scale: 1,
   duration: 2,
   ease: "power3.out"
 }, 0);
+tl4.to(".dogcat", {
+  scale: isMobile ? 3 : 2.5,
+  duration: 1,
+  ease: "power3.out"
+}, 0);
+
+tl4.to(".big-circle", {
+  scale: isMobile ? 3 : 2.5,
+  duration: 1,
+  ease: "power3.out"
+}, 0);
+
+
+
+
 
 const section5 = document.querySelector("#section5");
 
@@ -392,12 +409,12 @@ const section5 = document.querySelector("#section5");
 const tl5 = gsap.timeline({
     scrollTrigger: {
       trigger: "#section5",
-      start: "top -100px",
+      start: "top top",
        end: "+=140%",
       scrub: true,
       pin: true,
      
-   toggleActions: "play reset restart none",
+   toggleActions: "play reset reverse none",
     
 
     },
@@ -408,6 +425,8 @@ const tl5 = gsap.timeline({
 
 const split1 = new SplitText(".splittitle1", { type: "chars" });
 const split2 = new SplitText(".splittitle2", { type: "chars" });
+gsap.set(".big-circle1", { scale: 0 });
+gsap.set(".big-circle-inner", { scale: 0 });
 tl5.from(split1.chars, {
   opacity: 0,
   y: 20,
@@ -415,12 +434,21 @@ tl5.from(split1.chars, {
   duration: 2,
   ease: "power2.out"
 }, "<+0.2"); // starts right after previous
-  gsap.set(".big-circle1", {
-           scale:0
-        });
-          gsap.set(".big-circle-inner", {
-           scale:0
-        });
+
+
+
+tl4.to(".big-circle1", {
+  scale: isMobile ? 2.8 : 1,
+  ease: "none",
+  duration: 1
+}, 0); // after maskedImage animation
+
+tl4.to(".big-circle-inner", {
+  scale: isMobile ? 2.6 : 1,
+  ease: "none",
+  duration: 0.4
+}, 0.3);
+
 tl5.from(split2.chars, {
   opacity: 0,
   y: 20,
@@ -436,18 +464,7 @@ tl5.from(split2.chars, {
   duration: 1
 }, "0.1");
 
-tl5.to(".big-circle1", {
-  scale: isMobile ? 2.8 : 1,
-  
-  ease: "none",
-  duration: 1
-}, 0);
-tl5.to(".big-circle-inner", {
-  scale: isMobile ? 2.6 : 1,
-  
-  ease: "none",
-  duration: 0.4
-},">+0.3");
+
 
 
 tl5.add(gsap.fromTo("#theMask2 .masker", {
@@ -479,11 +496,11 @@ const circleAnim = gsap.timeline({
   scrollTrigger: {
     trigger: "#section3",
     start: "top top",
-    end: "+=4400", // matches tl3
+    end: "+=3400", // matches tl3
     scrub: true
   }
 });
-const fullDuration = 2.4; // match the tl3 timeline range
+const fullDuration = 3.4; // match the tl3 timeline range
 circleAnim.to(".big-circle", {
   scale: isMobile ? 0.8 : 1.3,
   ease: "none",
@@ -491,34 +508,34 @@ circleAnim.to(".big-circle", {
 }, 0);
 
 circleAnim.to(".dogcat", {
-  scale: isMobile ? 1.2 : 2.5,
+  scale: isMobile ? 1.8 : 2.5,
   ease: "none",
   duration: fullDuration * 0.25
 }, 0.1);
 
 circleAnim.to(".dogcat", {
-  scale: isMobile ? 1.7 : 3,
+  scale: isMobile ? 1.4 : 3,
   ease: "none",
   duration: fullDuration * 0.25
-}, 0.5);
+}, 0.7);
 
 circleAnim.to(".big-circle", {
-  scale: isMobile ? 0.3 : 1,
+  scale: isMobile ? 1 : 1,
   ease: "none",
   duration: fullDuration * 0.25
 }, 1);
 
 circleAnim.to(".dogcat", {
-  scale: isMobile ? 1 : 2,
+  scale: isMobile ? 1.4 : 2,
   ease: "none",
   duration: fullDuration * 0.25
-}, 1.5);
+}, 1.8);
 
  const tl6 = gsap.timeline({
     scrollTrigger: {
       trigger: "#section6",
       start: "top 20%",
-      end: isMobile ? "+=1200" : "+=2400",
+      end: isMobile ? "+=1200" : "+=2000",
       scrub:false,
       pin: false,
     }
@@ -635,9 +652,9 @@ const maskedImage2 = document.querySelector("#maskedImage2");
 
 
 tl6.fromTo("#maskedImage2", {
-  clipPath: "inset(0% 0% 0% 0% round 40px)",
+  clipPath: "inset(50% 50% 50% 50% round 999px)",
 }, {
- clipPath: isMobile ? "inset(20% 10% round 20px)" : "inset(5% 5% round 20px)",
+ clipPath: isMobile ? "inset(0% 0% round 20px)" : "inset(5% 5% round 20px)",
   ease: "power2.out",
   duration: 1
 }, 0);
@@ -808,9 +825,16 @@ async function loadTranslations() {
     
     // Hide the loader element after loading and initialization
     const loader = document.getElementById('loader');
-    if (loader) {
-      loader.style.display = 'none';
-    }
+
+if (loader) {
+  gsap.to(loader, {
+    scale: 0,
+    duration: 0.6,
+    ease: "power2.inOut",
+    transformOrigin: "center center",
+    onComplete: () => loader.style.display = "none"
+  });
+}
     
   } catch (error) {
     console.error('Error loading translations:', error);
