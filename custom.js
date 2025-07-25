@@ -864,7 +864,7 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleBtn.addEventListener('click', () => {
       currentLang = currentLang === 'bg' ? 'en' : 'bg';
       applyTranslations(currentLang);
-      initAnimations(); // re-initialize animations on language toggle
+     // initAnimations(); // re-initialize animations on language toggle
     });
   }
 });

@@ -1,6 +1,9 @@
 a* {
   box-sizing: border-box;
 }
+#language-toggle{
+  cursor:pointer;
+}
 section {
   display: flex;
   justify-content: center;
