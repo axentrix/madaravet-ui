@@ -370,7 +370,7 @@ const tl4 = gsap.timeline({
 
  // start of section4
 tl4.fromTo("#maskedImage", {
-  clipPath: "inset(50% 50% 150% 50% round 999px)",
+  clipPath: "inset(50% 50% 150% 50% round 44px)",
 }, {
  clipPath: isMobile ? "inset(0% 0% round 20px)" : "inset(5% 5% round 20px)",
   ease: "power2.out",
@@ -652,7 +652,7 @@ const maskedImage2 = document.querySelector("#maskedImage2");
 
 
 tl6.fromTo("#maskedImage2", {
-  clipPath: "inset(50% 50% 50% 50% round 999px)",
+  clipPath: "inset(50% 50% 50% 50% round 44px)",
 }, {
  clipPath: isMobile ? "inset(0% 0% round 20px)" : "inset(5% 5% round 20px)",
   ease: "power2.out",
